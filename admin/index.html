@@ -301,6 +301,37 @@
       }).join('');
       html += '<details id="det-work" class="section"><summary class="section-title">Work Experience</summary><div style="padding-top:10px;">' + workHtml + '<button class="btn" style="width:100%; justify-content:center;" onclick="addEntry()">+ Add Experience</button></div></details>';
 
+      // About & Hero
+      html += '<details id="det-hero" class="section"><summary class="section-title">About & Hero Texts</summary><div style="padding-top:10px;">' +
+        '<div class="field"><label>Tagline (Site)</label><input type="text" value="' + (db.main.occupation || '') + '" oninput="db.main.occupation=this.value;updatePreview();"></div>' +
+        '<div class="field"><label>About Bio (Site)</label><textarea oninput="db.main.bio=this.value;updatePreview();" style="height:100px;">' + (db.main.bio || '') + '</textarea></div>' +
+        '<div class="field"><label>Personal Statement (CV)</label><textarea oninput="db.main.cv.cvPersonalStatement=this.value;updatePreview();" style="height:100px;">' + (db.main.cv.cvPersonalStatement || '') + '</textarea></div>' +
+        '</div></details>';
+
+      // Education
+      const eduHtml = (db.resume.education || []).map((e, i) => {
+        return '<div class="entry-card">' +
+          '<div class="field"><label>School</label><input type="text" value="' + e.school + '" oninput="db.resume.education[' + i + '].school=this.value;updatePreview();"></div>' +
+          '<div class="field"><label>Degree</label><input type="text" value="' + e.degree + '" oninput="db.resume.education[' + i + '].degree=this.value;updatePreview();"></div>' +
+          '<div style="display:flex; gap:10px;">' +
+          '<div class="field" style="flex:1;"><label>Year</label><input type="text" value="' + e.graduated + '" oninput="db.resume.education[' + i + '].graduated=this.value;updatePreview();"></div>' +
+          '<button class="btn-sm" style="align-self:center;" onclick="db.resume.education.splice(' + i + ',1);renderEditor();updatePreview();">✕</button></div></div>';
+      }).join('');
+      html += '<details id="det-edu" class="section"><summary class="section-title">Education</summary><div style="padding-top:10px;">' + eduHtml +
+        '<button class="btn" style="width:100%; justify-content:center;" onclick="db.resume.education.unshift({school:\'New School\', degree:\'Degree\', graduated:\'2024\'});renderEditor();updatePreview();">+ Add Education</button></div></details>';
+
+      // Certifications
+      const certHtml = (db.certifications?.certifications || []).map((c, i) => {
+        return '<div class="entry-card">' +
+          '<div class="field"><label>Title</label><input type="text" value="' + c.title + '" oninput="db.certifications.certifications[' + i + '].title=this.value;updatePreview();"></div>' +
+          '<div class="field"><label>Verification Link (Credly)</label><input type="text" value="' + (c.verificationLink || '') + '" oninput="db.certifications.certifications[' + i + '].verificationLink=this.value;updatePreview();"></div>' +
+          '<div style="display:flex; gap:10px;">' +
+          '<div class="field" style="flex:1;"><label>Date</label><input type="text" value="' + (c.achieve_date || '') + '" oninput="db.certifications.certifications[' + i + '].achieve_date=this.value;updatePreview();"></div>' +
+          '<button class="btn-sm" style="align-self:center;" onclick="db.certifications.certifications.splice(' + i + ',1);renderEditor();updatePreview();">✕</button></div></div>';
+      }).join('');
+      html += '<details id="det-cert" class="section"><summary class="section-title">Certifications</summary><div style="padding-top:10px;">' + certHtml +
+        '<button class="btn" style="width:100%; justify-content:center;" onclick="if(!db.certifications.certifications)db.certifications.certifications=[]; db.certifications.certifications.unshift({title:\'New Cert\', achieve_date:\'2024\'});renderEditor();updatePreview();">+ Add Certification</button></div></details>';
+
       // Skills
       const skillsArr = db.resume.skills || [];
       const skillsHtml = skillsArr.map((s, i) => {
@@ -362,6 +393,11 @@
       html += '<div class="p-section"><div class="p-title">Experience</div>' + (r.work || []).map(w => {
         return '<div class="p-entry"><div class="p-entry-head"><span>' + w.title + '</span><span style="font-family: \'IBM Plex Mono\', monospace; font-size: 10px; font-weight: 400;">' + w.years + '</span></div>' +
           '<div class="p-entry-sub">' + w.company + '</div><p class="p-entry-desc">' + w.description + '</p></div>';
+      }).join('') + '</div>';
+
+      html += '<div class="p-section"><div class="p-title">Education</div>' + (r.education || []).map(e => {
+        return '<div class="p-entry"><div class="p-entry-head"><span>' + e.school + '</span><span style="font-family: \'IBM Plex Mono\', monospace; font-size: 10px; font-weight: 400;">' + e.graduated + '</span></div>' +
+          '<div class="p-entry-sub">' + e.degree + '</div></div>';
       }).join('') + '</div>';
 
       html += '<div class="p-section"><div class="p-title">Certifications</div><div style="font-size: 12.5px;">' +

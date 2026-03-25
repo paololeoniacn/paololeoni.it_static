@@ -32,7 +32,7 @@
             "cvPhone": "347448142(3)",
             "cvMail": "paololeoni88@gmail.com",
             "cvDatePlaceOfBirth": "01th May 1988, in Moncalieri (TO)",
-            "cvPersonalStatement": "I am a result-driven, motivated, and versatile developer with a proven ability to work with Agile and DevOps framework; and I follow the full-stack approach. I keep studying and learning to enhance my Architectural skills with a strong focus on the Cloud environment. Seeking to combine learning growth and work experience in a challenging role. Available to relocate & Available to travel."
+            "cvPersonalStatement": "Cloud Solutions Architect and AI/ML Engineer with over seven years of experience designing and delivering enterprise-grade systems across cloud, integration, and artificial intelligence domains. Specialized in cloud-native architecture on AWS — spanning EKS, S3, API Gateway, and Cognito — with a strong track record in modernizing legacy stacks and building scalable, secure integration layers. Hands-on practitioner in applied AI: from deploying production RAG pipelines and local LLM inference with GGUF and llama.cpp, to building AI-powered automation for incident management and code migration."
         },
         "social-bck": [
             {
@@ -219,59 +219,92 @@
         "education": [
             {
                 "school": "Blockchain Management School",
-                "degree": "Master Blockchain Technology & Management (Qualification stored on Ethereum)",
-                "graduated": "2021",
-                "description": "Advanced training in DLT, Smart Contracts and Decentralized Architecture."
+                "degree": "Master Blockchain Technology & Management",
+                "graduated": "2021"
             },
             {
-                "school": "Accenture",
+                "school": "Accenture University",
                 "degree": "Master Technology Architect (Fundamentals)",
-                "graduated": "2021",
-                "description": "Methodology, frameworks and architectural tools for enterprise cloud solutions."
+                "graduated": "2021"
             },
             {
-                "school": "Università degli Studi di L'Aquila",
+                "school": "Università degli Studi di L'Aquila (DISIM)",
                 "degree": "Bachelor's Degree in Computer Science",
-                "graduated": "2016",
-                "description": "Foundational studies in algorithms, forensics and software engineering."
+                "graduated": "2016"
             }
         ],
         "work": [
             {
+                "title": "Cloud Solutions Architect — Application Stack Modernization (MiTur)",
                 "company": "Accenture — Ministero del Turismo",
-                "title": "Cloud Solutions Architect — Application Stack Modernization",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Leading the porting of an existing enterprise application stack from TIBCO BusinessWorks 6 (BW6) to Java Spring Boot microservices, modernizing integration layers for the Italian Ministry of Tourism. Leveraged AI-assisted code analysis tools to reverse-engineer BW6 process flows, significantly accelerating migration timelines and reducing manual analysis effort."
+                "description": "Leading the porting of an existing enterprise application stack from TIBCO BusinessWorks 6 (BW6) to Java Spring Boot microservices. Designed and implemented cloud-native architecture on AWS (S3, API Gateway, EKS). Leveraged AI-assisted code analysis tools for reverse-engineering legacy patterns."
             },
             {
+                "title": "Cloud Solutions Architect — Mobile & Backend Federation (FiberCop)",
                 "company": "Accenture — FiberCop",
-                "title": "Cloud Solutions Architect — Mobile & Backend Federation",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Designed and implemented a secure connectivity layer between mobile applications and two independent, non-federated backend systems, enabling seamless cross-platform authentication. Architected a token management and authentication brokering solution to handle identity federation."
+                "description": "Architected a secure connectivity layer between mobile applications and heterogeneous backend systems using AWS API Gateway and Cognito. Implemented OAuth2/JWT-based token brokering for seamless cross-platform authentication without backend modifications."
             },
             {
+                "title": "Cloud Solutions Architect — Cloud Architecture Design & Migration (Dottor Max)",
                 "company": "Accenture — Dottor Max",
-                "title": "Cloud Solutions Architect — Cloud Architecture Design & Migration",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Designed end-to-end cloud architecture for a pharmacy management platform, supporting Dottor Max digital transformation roadmap. Produced detailed architectural blueprints covering compute, storage, networking, and security layers on AWS."
+                "description": "Designed end-to-end cloud architecture (RDS, S3, Lambda, ECS) for a pharmacy management platform. Produced detailed blueprints and defined a phased migration strategy from on-premises to AWS."
             },
             {
-                "company": "Accenture",
                 "title": "AI/ML Engineer — Local LLM Products with GGUF & Llama.cpp",
-                "years": "2024 – Ongoing",
-                "description": "Developed internal-use AI products powered by locally-run quantized language models (GGUF format) via llama.cpp, enabling fully on-premise inference. Built AI-assisted code analysis tooling and RAG pipelines for document analysis."
-            },
-            {
-                "company": "Accenture — ENEL",
-                "title": "AI/ML Engineer — Incident Management Automation",
-                "years": "2024 – Ongoing",
-                "description": "Designed and implemented an AI-powered automation framework for incident detection, classification, and triage within ENEL operational infrastructure. Developed intelligent agents to correlate log patterns and suggest remediation actions."
-            },
-            {
                 "company": "Accenture",
+                "years": "2024 – Ongoing",
+                "description": "Developed internal AI products using quantized language models (GGUF) via llama.cpp for on-premise inference. Implemented RAG pipelines and modular pipelines integrating vector stores (FAISS, ChromaDB)."
+            },
+            {
+                "title": "AI/ML Engineer — Incident Management Automation (ENEL)",
+                "company": "Accenture — ENEL",
+                "years": "2024 – Ongoing",
+                "description": "Designed an AI framework for autonomous incident detection and triage. Integrated AI models with InfluxDB and Grafana to reduce MTTR and trigger automated runbooks."
+            },
+            {
                 "title": "Cloud Solutions Architect — Data Orchestration for EUDR Compliance",
+                "company": "Accenture",
                 "years": "Jan 2025 – Ongoing",
-                "description": "Designed and implemented a cloud-native data orchestration framework integrated with TRACEMARK for raw material traceability and EUDR compliance. Oversaw end-to-end delivery: requirements gathering, solution design, deployment."
+                "description": "Designed a cloud-native data orchestration framework integrated with TRACEMARK for raw material traceability. Established secure ERP integrations (SAP, Postgres) with AWS S3."
+            },
+            {
+                "title": "AI/ML Engineer — LLM and Generative AI",
+                "company": "Accenture",
+                "years": "Mar 2024 – Present",
+                "description": "Research and implementation of LLMs using TensorFlow, PyTorch, and GGUF quantization techniques. Developed RAG (Retrieval-Augmented Generation) solutions to enhance accuracy and context-awareness."
+            },
+            {
+                "title": "Software Architect and Team Lead",
+                "company": "Accenture",
+                "years": "Feb 2024 – Ongoing",
+                "description": "Supervised development teams for EUDR compliance and internal GenAI projects. Designed web applications using React and cloud-native solutions with AWS (S3, Cognito, API Gateway)."
+            },
+            {
+                "title": "DevOps & Observability Specialist — Active Monitoring with InfluxDB",
+                "company": "Accenture",
+                "years": "Mar 2024 – Apr 2024",
+                "description": "Architected an active monitoring system using InfluxDB and Python (pandas, influxdb_client) for metrics visualization. Containerized and orchestrated microservices with Docker and Kubernetes on AWS."
+            },
+            {
+                "title": "Blockchain Engineer & DevOps Specialist",
+                "company": "Accenture",
+                "years": "Mar 2023 – Ongoing",
+                "description": "Deployed custom blockchain networks using Hyperledger Besu. Wrote Solidity smart contracts for NFT management and developed backend services in Node.js and Java (Quarkus)."
+            },
+            {
+                "title": "Application Development Senior Analyst",
+                "company": "Accenture — ENEL",
+                "years": "Jan 2020 – Feb 2023",
+                "description": "Developed web portals and energy market platforms for ENEL Italy and North America. Full-stack development with React and Java Spring Boot (microservices) on AWS. Acted as Scrum Master."
+            },
+            {
+                "title": "Application Development Analyst",
+                "company": "Accenture — ENEL / ENEL Green Power",
+                "years": "Apr 2017 – Jan 2020",
+                "description": "Analysis and development of energy market platforms. Led the architectural migration from on-premises to AWS EC2 using SAS and J2EE technology stacks."
             }
         ],
         "skills": [
@@ -629,84 +662,67 @@
     "certifications": {
         "certifications": [
             {
-                "title": "Certified Kubernetes Application Developer (CKAD)",
-                "logo": "/images/Certifications/CKAD.jpg",
-                "description": [
-                    "Earners of this certification have demonstrated the ability to design, build, and deploy cloud-native applications for Kubernetes."
-                ],
-                "ongoing": true,
-                "verificationLink": "",
-                "logoHeight": "auto",
-                "achieve_date": "",
-                "expire_date": ""
-            },
-            {
-                "title": "AWS Certified Solutions Architect Associate",
-                "logo": "/images/Certifications/AWS-SolArchitect-Associate-2022.png",
-                "description": [
-                    "Earners of this certification have a comprehensive understanding of AWS services and technologies. They demonstrated the ability to build secure and robust solutions using architectural design principles based on customer requirements. Badge owners are able to strategically design well-architected distributed systems that are scalable, resilient, efficient, and fault-tolerant."
-                ],
-                "ongoing": false,
-                "verificationLink": "https://www.credly.com/badges/8a846aca-20ae-4823-b8bb-b66b378a6e61/public_url",
-                "logoHeight": "auto",
-                "achieve_date": "2022-09-30",
-                "expire_date": "2025-09-30"
-            },
-            {
-                "title": "DevOps Foundation",
-                "logo": "/images/Certifications/DevOpsFoundation_badge.jpg",
-                "description": [
-                    "The DevOps Foundation course provides a baseline understanding of key DevOps terminology and the fundamental principles and frameworks that underpin it."
-                ],
-                "ongoing": false,
-                "logoHeight": "auto",
-                "achieve_date": "2021-11-30"
-            },
-            {
-                "title": "Trained Accenture Master Technology Architect (Fundamentals)",
-                "logo": "/images/Certifications/MTA-Cube-423x420-Transparent.png",
-                "description": [
-                    "The MTA certification program specifies the skills and experiences expected of Technology Architects. It is designed for Accenture technology professionals in order to: evaluate and progress with the technology skills, enable technology professionals to perform in the NEW, recognize technology architecture skills, offer a well-defined career progression for aspiring architects."
-                ],
-                "ongoing": false,
-                "logoHeight": "auto",
-                "achieve_date": "2021-07-21"
-            },
-            {
-                "title": "AWS Certified Cloud Practitioner",
-                "logo": "/images/Certifications/AWS-CloudPractitioner-2022.png",
-                "description": [
-                    "Earners of this certification have a fundamental understanding of IT services and their uses in the AWS Cloud. They demonstrated cloud fluency and foundational AWS knowledge. Badge owners are able to identify essential AWS services necessary to set up AWS-focused projects."
-                ],
-                "verificationLink": "https://www.credly.com/badges/eafe33bb-92c2-4414-96c1-554e1b304646/public_url",
-                "ongoing": false,
-                "logoHeight": "auto",
-                "achieve_date": "2021-04-28",
-                "expire_date": "2025-09-30"
+                "title": "CKAD Certification",
+                "achieve_date": "Ongoing",
+                "logo": "/images/Certifications/CKAD.jpg"
             },
             {
                 "title": "Professional Scrum Master™ Certification",
-                "logo": "/images/Certifications/Professional-Scrum-Master-1-Certification.png",
-                "description": [
-                    "The Professional Scrum Master (PSM I) is recognized by the industry as a certification that demonstrates a fundamental level of Scrum mastery."
-                ],
-                "ongoing": true,
-                "verificationLink": "",
-                "logoHeight": "auto",
-                "achieve_date": "",
-                "expire_date": ""
+                "achieve_date": "Ongoing",
+                "logo": "/images/Certifications/Professional-Scrum-Master-1-Certification.png"
+            },
+            {
+                "title": "AWS Certified Solutions Architect Associate",
+                "achieve_date": "Sep 2022",
+                "logo": "/images/Certifications/AWS-SolArchitect-Associate-2022.png",
+                "verificationLink": "https://www.credly.com/badges/8a846aca-20ae-4823-b8bb-b66b378a6e61/public_url"
+            },
+            {
+                "title": "DevOps Foundation",
+                "achieve_date": "Dec 2021",
+                "logo": "/images/Certifications/DevOpsFoundation_badge.jpg"
+            },
+            {
+                "title": "Accenture Master Technology Architect (Fundamentals)",
+                "achieve_date": "May 2021",
+                "logo": "/images/Certifications/MTA-Cube-423x420-Transparent.png"
+            },
+            {
+                "title": "Amazon AWS Cloud Practitioner Certification",
+                "achieve_date": "Apr 2021",
+                "logo": "/images/Certifications/AWS-CloudPractitioner-2022.png",
+                "verificationLink": "https://www.credly.com/badges/eafe33bb-92c2-4414-96c1-554e1b304646/public_url"
             },
             {
                 "title": "Microsoft Azure Fundamentals [AZ900]",
+                "achieve_date": "Nov 2020",
                 "logo": "/images/Certifications/azure-fundamentals-600x600.png",
-                "description": [
-                    "Earners of this certification have demonstrated foundational level knowledge of cloud services and how those services are provided with Microsoft Azure."
-                ],
-                "ongoing": false,
-                "verificationLink": "https://www.credly.com/badges/f83b1a09-8bde-4c87-8aaf-4932815e5b76/public_url",
-                "logoHeight": "auto",
-                "achieve_date": "2020-11-09",
-                "expire_date": ""
+                "verificationLink": "https://www.credly.com/badges/f83b1a09-8bde-4c87-8aaf-4932815e5b76/public_url"
+            },
+            {
+                "title": "Professional Scrum Developer I [PSD1]",
+                "achieve_date": "Jul 2019",
+                "logo": "/images/Certifications/Professional_Scrum_Developer.png"
+            },
+            {
+                "title": "Kubernetes — Accenture University + Udemy",
+                "achieve_date": "Feb 2020",
+                "logo": "/images/Certifications/Accenture_Master_Technology_Architect.jpg"
+            },
+            {
+                "title": "React — Accenture University + Udemy",
+                "achieve_date": "Jan 2020",
+                "logo": "/images/Certifications/Accenture_Master_Technology_Architect.jpg"
+            },
+            {
+                "title": "Docker — Accenture University + Udemy",
+                "achieve_date": "Nov 2019",
+                "logo": "/images/Certifications/Accenture_Master_Technology_Architect.jpg"
+            },
+            {
+                "title": "Python — Accenture University + Udemy",
+                "achieve_date": "Feb 2018",
+                "logo": "/images/Certifications/Accenture_Master_Technology_Architect.jpg"
             }
         ]
     },

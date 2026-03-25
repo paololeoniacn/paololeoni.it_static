@@ -300,6 +300,16 @@
             transition: var(--transition);
         }
 
+        .cert-card[onclick] {
+            cursor: pointer;
+        }
+
+        .cert-card[onclick]:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            background: var(--surface-hover);
+        }
+
         .cert-card:hover {
             border-color: var(--accent);
             transform: translateY(-5px);
@@ -715,7 +725,7 @@
 
                 if (data.certifications && data.certifications.certifications) {
                     inject('cert-grid', data.certifications.certifications.map(c => `
-                        <div class="cert-card">
+                        <div class="cert-card" ${c.verificationLink ? `onclick="window.open('${c.verificationLink}', '_blank')" style="cursor:pointer;"` : ''}>
                             <div class="cert-info">
                                 <h3>${c.title}</h3>
                                 <p>${c.achieve_date || (c.ongoing ? 'Ongoing' : '')}</p>
