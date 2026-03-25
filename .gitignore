@@ -1,0 +1,50 @@
+# macOS Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Log Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Directory obsolete o in cache
+node_modules/
+.npm/
+.yarn/
+build/
+dist/
+out/
+.vercel
+.netlify
+.pages
+
+# Python Environment (Rule 5 del Protocollo)
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Workspace Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project documentation e file temporanei
+/tmp/
+.agents/drafts/
+# docs/V1 è incluso perché è parte del protocollo
+
+# Cloudflare Wrangler files
+.wrangler/
+wrangler-debug.log
+.dev.vars
+
+old/*

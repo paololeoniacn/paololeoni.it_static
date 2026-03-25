@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — CV Orchestrator</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f5f0e8;
+      --accent: #ff4d00;
+      /* Coerenza con il Frontend */
+      --muted: #6b6457;
+      --border: #c8bfaf;
+      --panel: #ece7dc;
+      --highlight: #e8d5c0;
+      --white: #fdfaf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: #1a1612;
+      color: var(--ink);
+      min-height: 100vh;
+    }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .topbar-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .topbar-title span {
+      color: var(--accent);
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border: 1.5px solid currentColor;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: all 0.15s;
+      background: transparent;
+    }
+
+    .btn-primary {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-save {
+      color: #4caf82;
+      border-color: #4caf82;
+    }
+
+    .btn-save:hover {
+      background: #4caf82;
+      color: #0d0d0d;
+    }
+
+    .btn-secondary {
+      color: var(--paper);
+      border-color: #555;
+    }
+
+    .app-layout {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .editor-container {
+      background: var(--paper);
+      width: 100%;
+      max-width: 900px;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+    }
+
+    .field-group {
+      margin-bottom: 15px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .field-input,
+    .field-textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .field-textarea {
+      min-height: 100px;
+    }
+
+    .list-item {
+      background: var(--panel);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .btn-del {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #e05050;
+      cursor: pointer;
+    }
+
+    .btn-add {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #4caf82;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 4px;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="topbar-title"><span>CV</span> ORCHESTRATOR — Admin Backend</div>
+    <div class="topbar-actions">
+      <button class="btn btn-save" onclick="downloadJSON()">💾 Export JSON</button>
+      <a href="/public/" class="btn btn-primary" style="text-decoration: none;">👁 View Public Profile</a>
+    </div>
+  </div>
+
+  <div class="app-layout">
+    <div class="editor-container" id="editorRoot">
+      <p>Loading central data from resumeData.json...</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">JSON Pronto per il download!</div>
+
+  <script>
+    let resumeData = null;
+
+    async function loadData() {
+      try {
+        const res = await fetch('../data/resumeData.json');
+        resumeData = await res.json();
+        renderEditor();
+      } catch (e) {
+        console.error("Failed to load JSON", e);
+      }
+    }
+
+    function renderEditor() {
+      const root = document.getElementById('editorRoot');
+      const main = resumeData.main;
+      const res = resumeData.resume;
+
+      root.innerHTML = `
+            <div class="section">
+                <h2>01 · Personal Identity</h2>
+                <div class="field-group">
+                    <label class="field-label">Occupation / Title</label>
+                    <input type="text" class="field-input" value="${main.occupation}" oninput="resumeData.main.occupation = this.value">
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Professional Bio</label>
+                    <textarea class="field-textarea" oninput="resumeData.main.bio = this.value">${main.bio}</textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>02 · Work Experience</h2>
+                <div id="work-items">
+                    ${res.work.map((w, idx) => `
+                        <div class="list-item">
+                            <button class="btn-del" onclick="removeItem('work', ${idx})"><i class="fa-solid fa-trash"></i></button>
+                            <div class="field-group">
+                                <label class="field-label">Company</label>
+                                <input type="text" class="field-input" value="${w.company}" oninput="resumeData.resume.work[${idx}].company = this.value">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label">Role</label>
+                                <input type="text" class="field-input" value="${w.title}" oninput="resumeData.resume.work[${idx}].title = this.value">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label">Years</label>
+                                <input type="text" class="field-input" value="${w.years}" oninput="resumeData.resume.work[${idx}].years = this.value">
+                            </div>
+                            <div class="field-group">
+                                <label class="field-label">Detailed Description</label>
+                                <textarea class="field-textarea" oninput="resumeData.resume.work[${idx}].description = this.value">${w.description}</textarea>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="btn-add" onclick="addItem('work')">+ Add Experience</button>
+            </div>
+
+            <div class="section">
+                <h2>03 · Skills (Pulsantiera)</h2>
+                <div id="skill-items">
+                    ${res.skills.map((s, idx) => `
+                        <div style="display:flex; gap:10px; margin-bottom:10px;">
+                            <input type="text" class="field-input" style="flex:2" value="${s.name}" oninput="resumeData.resume.skills[${idx}].name = this.value">
+                            <input type="text" class="field-input" style="flex:1" value="${s.level}" oninput="resumeData.resume.skills[${idx}].level = this.value">
+                            <button class="btn-del" style="position:static" onclick="removeItem('skills', ${idx})"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="btn-add" onclick="addItem('skills')">+ Add Skill</button>
+            </div>
+        `;
+    }
+
+    function addItem(type) {
+      if (type === 'work') {
+        resumeData.resume.work.push({ company: "New Company", title: "New Role", years: "2025", description: "" });
+      } else if (type === 'skills') {
+        resumeData.resume.skills.push({ name: "New Skill", level: "80%" });
+      }
+      renderEditor();
+    }
+
+    function removeItem(type, idx) {
+      resumeData.resume[type].splice(idx, 1);
+      renderEditor();
+    }
+
+    function downloadJSON() {
+      const blob = new Blob([JSON.stringify(resumeData, null, 4)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'resumeData.json';
+      a.click();
+
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    loadData();
+  </script>
+</body>
+
+</html>
