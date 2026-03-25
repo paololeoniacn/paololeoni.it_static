@@ -98,11 +98,34 @@ cmd_status() {
 }
 
 cmd_run() {
-    log_info "=== AVVIO SERVER LOCALE (Porta 8000) ==="
-    log_info "Area Public: http://localhost:8000/public/"
-    log_info "Area Admin:  http://localhost:8000/admin/"
-    log_warn "Premi Ctrl+C per fermare il server."
-    python3 -m http.server 8000
+    log_info "=== AVVIO SERVER LOCALE (Porta 8081) ==="
+    log_info "Area Public: http://localhost:8081/public/"
+    log_info "Area Admin:  http://localhost:8081/admin/"
+    log_warn "Premi Ctrl+C per fermare il server (o usa stop in un altro terminale)."
+    python3 server.py &
+    echo $! > .server.pid
+    wait $!
+}
+
+cmd_stop() {
+    log_info "=== ARRESTO SERVER LOCALE ==="
+    if [ -f .server.pid ]; then
+        local pid=$(cat .server.pid)
+        if ps -p $pid > /dev/null 2>&1; then
+            kill $pid && log_success "Server (PID $pid) fermato."
+        else
+            log_warn "Il server (PID $pid) non era già in esecuzione."
+        fi
+        rm -f .server.pid
+    else
+        # Fallback: cerca i processi python3 server.py
+        local pids=$(ps aux | grep "[s]erver.py" | awk '{print $2}')
+        if [ -n "$pids" ]; then
+            kill $pids && log_success "Processi server terminati."
+        else
+            log_warn "Nessun server attivo trovato."
+        fi
+    fi
 }
 
 cmd_deploy() {
@@ -142,6 +165,7 @@ cmd_help() {
     echo "  status         Mostra lo stato del progetto e dei dati"
     echo "  install        Inizializza l'ambiente virtuale e le dipendenze"
     echo "  run            Avvia il server locale per visualizzare il sito"
+    echo "  stop           Arresta il server locale"
     echo "  backup         Crea un archivio ZIP di dati e configurazioni"
     echo "  clean          Rimuove l'ambiente virtuale e i file temporanei"
     echo ""
@@ -157,6 +181,7 @@ case "$1" in
     status)         cmd_status ;;
     install)        check_python && ensure_venv ;;
     run)            cmd_run ;;
+    stop)           cmd_stop ;;
     deploy)         cmd_deploy ;;
     backup)         cmd_backup ;;
     clean)          cmd_clean ;;

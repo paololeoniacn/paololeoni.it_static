@@ -2,12 +2,12 @@
     "main": {
         "name": "Paolo Leoni",
         "surname": "Leoni",
-        "occupation": "\ud83e\udde0 Technology Architect & AI/ML Engineer, specializing in scalable architectures, AI, blockchain, and cloud automation. I build efficient, sustainable systems that drive innovation",
-        "occupationTarget": "\ud83c\udf1f A key industry reference, blending strategy, agility, and impact. Advocate of AI & blockchain. Passionate about sustainable tech",
-        "description": "\ud83e\udd16 Conversational AI Expert |\ud83d\udca1\"Load\" CM Founder, Designer & Developer |\ud83d\udcbb Full Stack |\ud83e\udd3c People Developer |\ud83c\udfa8 Senior Technology Architect @Accenture |\u2601\ufe0f Technology Cloud Architect |\ud83d\udc68\ud83c\udffd\u200d\ud83d\udcbb DevOps skills enthusiast |\u267b\ufe0f Agile SCRUM Developer |\ud83d\udd17 Blockchain Specialist  |\ud83c\udf32 Soustainability by technology Ambassador EUDR ",
+        "occupation": "🧠 Technology Architect & AI/ML Engineer, specializing in scalable architectures, AI, blockchain, and cloud automation. I build efficient, sustainable systems that drive innovation",
+        "occupationTarget": "🌟 A key industry reference, blending strategy, agility, and impact. Advocate of AI & blockchain. Passionate about sustainable tech",
+        "description": "🤖 Conversational AI Expert |💡\"Load\" CM Founder, Designer & Developer |💻 Full Stack |🤼 People Developer |🎨 Senior Technology Architect @Accenture |☁️ Technology Cloud Architect |👨🏽‍💻 DevOps skills enthusiast |♻️ Agile SCRUM Developer |🔗 Blockchain Specialist  |🌲 Soustainability by technology Ambassador EUDR ",
         "image": "images/profilepic.jpg",
-        "bio": "Cloud Solutions Architect and AI/ML Engineer with over seven years of experience designing and delivering enterprise-grade systems across cloud, integration, and artificial intelligence domains. Specialized in cloud-native architecture on AWS \u2014 spanning EKS, S3, API Gateway, and Cognito \u2014 with a strong track record in modernizing legacy stacks and building scalable, secure integration layers. Hands-on practitioner in applied AI: from deploying production RAG pipelines and local LLM inference with GGUF and llama.cpp, to building AI-powered automation for incident management and code migration.",
-        "big-bio": "My name is Paolo, born in '88, and since 2018, I've been part of the dynamic world of Accenture. Throughout my career, I've immersed myself in a plethora of projects, languages, architectures, and roles, each shaping me into the versatile and forward-thinking innovator I am today. My journey in tech has not only been about adapting and learning; it's been a process of constant innovation and redefinition of what's possible. An essential daily habit that has been crucial to my success is my walking meditation. Every day, without fail, this practice helps me maintain calmness and focus, allowing me to approach challenges with clarity and innovate with intention. It's in these moments of tranquility that I find my greatest inspirations and the strength to keep pushing the boundaries of technology. My most precious childhood memory is of visiting the animals with my grandmother during vacations. Those moments, filled with dedication, effort, and love towards the creatures that depended so much on us, taught me valuable lessons early on. Experiencing the responsibility as a playful adventure instilled in me a profound respect for life and nature, values that I carry with me in everything I do. There's a place that I consider my 'second home'\u2014a small balcony in an inaccessible house in a hamlet in the Val Maira. This secluded spot is where I find peace, inspiration, and a sense of timelessness that rejuvenates my soul. Here, I reconnect with myself, drawing inspiration from the serene landscape to fuel my passion for innovation and creativity. In my role at Accenture, I bring this blend of calm determination, inspired innovation, and deep-rooted values to every project I tackle. I am constantly on the lookout for the next challenge, ready to leverage my experiences and insights to make a meaningful impact in the tech world.",
+        "bio": "Cloud Solutions Architect and AI/ML Engineer with over seven years of experience designing and delivering enterprise-grade systems across cloud, integration, and artificial intelligence domains. Specialized in cloud-native architecture on AWS — spanning EKS, S3, API Gateway, and Cognito — with a strong track record in modernizing legacy stacks and building scalable, secure integration layers. Hands-on practitioner in applied AI: from deploying production RAG pipelines and local LLM inference with GGUF and llama.cpp, to building AI-powered automation for incident management and code migration.",
+        "big-bio": "My name is Paolo, born in '88, and since 2018, I've been part of the dynamic world of Accenture. Throughout my career, I've immersed myself in a plethora of projects, languages, architectures, and roles, each shaping me into the versatile and forward-thinking innovator I am today. My journey in tech has not only been about adapting and learning; it's been a process of constant innovation and redefinition of what's possible. An essential daily habit that has been crucial to my success is my walking meditation. Every day, without fail, this practice helps me maintain calmness and focus, allowing me to approach challenges with clarity and innovate with intention. It's in these moments of tranquility that I find my greatest inspirations and the strength to keep pushing the boundaries of technology. My most precious childhood memory is of visiting the animals with my grandmother during vacations. Those moments, filled with dedication, effort, and love towards the creatures that depended so much on us, taught me valuable lessons early on. Experiencing the responsibility as a playful adventure instilled in me a profound respect for life and nature, values that I carry with me in everything I do. There's a place that I consider my 'second home'—a small balcony in an inaccessible house in a hamlet in the Val Maira. This secluded spot is where I find peace, inspiration, and a sense of timelessness that rejuvenates my soul. Here, I reconnect with myself, drawing inspiration from the serene landscape to fuel my passion for innovation and creativity. In my role at Accenture, I bring this blend of calm determination, inspired innovation, and deep-rooted values to every project I tackle. I am constantly on the lookout for the next challenge, ready to leverage my experiences and insights to make a meaningful impact in the tech world.",
         "contactmessage": "Here is where you should write your message to readers to have them get in contact with you.",
         "email": "paololeoni88@gmail.com",
         "phone": "",
@@ -83,8 +83,13 @@
                 "className": "fa fa-instagram"
             },
             {
-                "name": "github",
+                "name": "paololeoniacn",
                 "url": "https://github.com/paololeoniacn",
+                "className": "fa fa-github"
+            },
+            {
+                "url": "https://github.com/paololeoniacn",
+                "name": "paololeoniacn",
                 "className": "fa fa-github"
             }
         ]
@@ -168,44 +173,44 @@
             {
                 "text": "Create High Available on-cloud architectures.",
                 "label": "build",
-                "symbol": "\ud83d\udd27"
+                "symbol": "🔧"
             },
             {
                 "text": "Develop small CRMs and Enterprise Energy Management Application.",
                 "label": "spark",
-                "symbol": "\u2728"
+                "symbol": "✨"
             },
             {
                 "text": "Organize projects and resources using Agile Framework.",
                 "label": "agile",
-                "symbol": "\u267b\ufe0f"
+                "symbol": "♻️"
             }
         ],
         "lightningPhrases": [
             {
                 "text": "AI-first mindset: automation, intelligence, and augmentation at the core.",
                 "label": "",
-                "symbol": "\ud83e\udd16"
+                "symbol": "🤖"
             },
             {
                 "text": "Custom code over shortcuts: precision, performance, and full control.",
                 "label": "",
-                "symbol": "\ud83d\udcbb"
+                "symbol": "💻"
             },
             {
                 "text": "Building sustainable futures through intelligent technology.",
                 "label": "",
-                "symbol": "\ud83c\udf31"
+                "symbol": "🌱"
             },
             {
                 "text": "Digitalization and datafication as the backbone of modern architectures.",
                 "label": "",
-                "symbol": "\ud83d\udcca"
+                "symbol": "📊"
             },
             {
                 "text": "Tech should be transparent, accountable, and governed with purpose.",
                 "label": "",
-                "symbol": "\ud83d\udd0d"
+                "symbol": "🔍"
             }
         ]
     },
@@ -225,7 +230,7 @@
                 "description": "Methodology, frameworks and architectural tools for enterprise cloud solutions."
             },
             {
-                "school": "Universit\u00e0 degli Studi di L'Aquila",
+                "school": "Università degli Studi di L'Aquila",
                 "degree": "Bachelor's Degree in Computer Science",
                 "graduated": "2016",
                 "description": "Foundational studies in algorithms, forensics and software engineering."
@@ -233,106 +238,154 @@
         ],
         "work": [
             {
-                "company": "Accenture \u2014 Ministero del Turismo",
-                "title": "Cloud Solutions Architect \u2014 Application Stack Modernization",
-                "years": "Apr 2025 \u2013 Ongoing",
+                "company": "Accenture — Ministero del Turismo",
+                "title": "Cloud Solutions Architect — Application Stack Modernization",
+                "years": "Apr 2025 – Ongoing",
                 "description": "Leading the porting of an existing enterprise application stack from TIBCO BusinessWorks 6 (BW6) to Java Spring Boot microservices, modernizing integration layers for the Italian Ministry of Tourism. Leveraged AI-assisted code analysis tools to reverse-engineer BW6 process flows, significantly accelerating migration timelines and reducing manual analysis effort."
             },
             {
-                "company": "Accenture \u2014 FiberCop",
-                "title": "Cloud Solutions Architect \u2014 Mobile & Backend Federation",
-                "years": "Apr 2025 \u2013 Ongoing",
+                "company": "Accenture — FiberCop",
+                "title": "Cloud Solutions Architect — Mobile & Backend Federation",
+                "years": "Apr 2025 – Ongoing",
                 "description": "Designed and implemented a secure connectivity layer between mobile applications and two independent, non-federated backend systems, enabling seamless cross-platform authentication. Architected a token management and authentication brokering solution to handle identity federation."
             },
             {
-                "company": "Accenture \u2014 Dottor Max",
-                "title": "Cloud Solutions Architect \u2014 Cloud Architecture Design & Migration",
-                "years": "Apr 2025 \u2013 Ongoing",
+                "company": "Accenture — Dottor Max",
+                "title": "Cloud Solutions Architect — Cloud Architecture Design & Migration",
+                "years": "Apr 2025 – Ongoing",
                 "description": "Designed end-to-end cloud architecture for a pharmacy management platform, supporting Dottor Max digital transformation roadmap. Produced detailed architectural blueprints covering compute, storage, networking, and security layers on AWS."
             },
             {
                 "company": "Accenture",
-                "title": "AI/ML Engineer \u2014 Local LLM Products with GGUF & Llama.cpp",
-                "years": "2024 \u2013 Ongoing",
+                "title": "AI/ML Engineer — Local LLM Products with GGUF & Llama.cpp",
+                "years": "2024 – Ongoing",
                 "description": "Developed internal-use AI products powered by locally-run quantized language models (GGUF format) via llama.cpp, enabling fully on-premise inference. Built AI-assisted code analysis tooling and RAG pipelines for document analysis."
             },
             {
-                "company": "Accenture \u2014 ENEL",
-                "title": "AI/ML Engineer \u2014 Incident Management Automation",
-                "years": "2024 \u2013 Ongoing",
+                "company": "Accenture — ENEL",
+                "title": "AI/ML Engineer — Incident Management Automation",
+                "years": "2024 – Ongoing",
                 "description": "Designed and implemented an AI-powered automation framework for incident detection, classification, and triage within ENEL operational infrastructure. Developed intelligent agents to correlate log patterns and suggest remediation actions."
             },
             {
                 "company": "Accenture",
-                "title": "Cloud Solutions Architect \u2014 Data Orchestration for EUDR Compliance",
-                "years": "Jan 2025 \u2013 Ongoing",
+                "title": "Cloud Solutions Architect — Data Orchestration for EUDR Compliance",
+                "years": "Jan 2025 – Ongoing",
                 "description": "Designed and implemented a cloud-native data orchestration framework integrated with TRACEMARK for raw material traceability and EUDR compliance. Oversaw end-to-end delivery: requirements gathering, solution design, deployment."
             }
         ],
         "skills": [
             {
-                "name": "Passion \ud83d\ude80",
-                "level": "400%"
+                "name": "Passion 🚀",
+                "level": "400%",
+                "category": "soft.bin"
             },
             {
                 "name": "Full Stack Software Developer",
-                "level": "100%"
+                "level": "100%",
+                "category": "execution (ui)"
             },
             {
                 "name": "Web and Mobile applications",
-                "level": "100%"
+                "level": "100%",
+                "category": "execution (ui)"
             },
             {
                 "name": "JavaScript",
-                "level": "100%"
+                "level": "100%",
+                "category": "execution (ui)"
             },
             {
                 "name": "bash/shell/scripting",
-                "level": "100%"
+                "level": "100%",
+                "category": "backend (i/o)"
             },
             {
                 "name": "NodeJs",
-                "level": "80%"
+                "level": "80%",
+                "category": "backend (i/o)"
             },
             {
-                "name": "GenAI",
-                "level": "80%"
+                "name": "GenAI / LLM / RAG / CAG",
+                "level": "80%",
+                "category": "intelligence.bin"
             },
             {
-                "name": "React",
-                "level": "70%"
+                "name": "React / Next.js",
+                "level": "70%",
+                "category": "execution (ui)"
             },
             {
-                "name": "AWS Cloud",
-                "level": "60%"
+                "name": "AWS (EKS, S3, EC2, IAM, API Gateway, Cognito)",
+                "level": "60%",
+                "category": "architecture.sys"
             },
             {
                 "name": "Technology Architect",
-                "level": "60%"
+                "level": "60%",
+                "category": "architecture.sys"
             },
             {
                 "name": "Blockchain Management",
-                "level": "50%"
+                "level": "50%",
+                "category": "backend (i/o)"
             },
             {
                 "name": "Ollama / Local LLMs",
-                "level": "95%"
+                "level": "95%",
+                "category": "intelligence.bin"
             },
             {
                 "name": "AI Agent Orchestration",
-                "level": "90%"
+                "level": "90%",
+                "category": "intelligence.bin"
             },
             {
                 "name": "llama.cpp / GGUF / local inference",
-                "level": "85%"
+                "level": "85%",
+                "category": "intelligence.bin"
             },
             {
                 "name": "Python / PyTorch",
-                "level": "80%"
+                "level": "80%",
+                "category": "backend (i/o)"
             },
             {
                 "name": "Azure Cloud",
-                "level": "40%"
+                "level": "40%",
+                "category": "architecture.sys"
+            },
+            {
+                "name": "Kubernetes / Docker / Helm",
+                "category": "architecture.sys"
+            },
+            {
+                "name": "Java Spring Boot / Quarkus",
+                "category": "backend (i/o)"
+            },
+            {
+                "name": "TensorFlow / PyTorch ",
+                "category": "intelligence.bin"
+            },
+            {
+                "name": "SAP / TIBCO / ERP Integration",
+                "category": "backend (i/o)"
+            },
+            {
+                "name": "Hyperledger Besu / Solidity / IPFS",
+                "category": "backend (i/o)"
+            },
+            {
+                "name": "CI/CD / DevOps / GitOps",
+                "category": "architecture.sys"
+            },
+            {
+                "name": "Observability",
+                "category": "architecture.sys"
+            },
+            {
+                "name": "InfluxDB",
+                "category": "architecture.sys"
             }
         ]
     },
@@ -441,7 +494,7 @@
                 "logo": "",
                 "role": "Digital Forensics",
                 "fromTo": "2014",
-                "place": "Universit\u00e0 degli Studi dell'Aquila",
+                "place": "Università degli Studi dell'Aquila",
                 "description": "@antonio mauro"
             },
             {
@@ -449,14 +502,14 @@
                 "logo": "",
                 "role": "Mobile application developer",
                 "fromTo": "2013",
-                "place": "Universit\u00e0 degli Studi dell'Aquila",
+                "place": "Università degli Studi dell'Aquila",
                 "description": ""
             },
             {
                 "title": "Docenza @Garanzia_Giovani",
                 "logo": "",
                 "role": "Docente",
-                "fromTo": "mar 2016 \u2013 giu 2016",
+                "fromTo": "mar 2016 – giu 2016",
                 "place": "Efor s.r.l., Roseto degli Abruzzi",
                 "description": "Docenza per figura professionale \"Archivista Digitale\" in progetto Garanzia Giovani. Corso strutturato in 100 ore di teoria e 200 di stage in azienda"
             },
@@ -464,23 +517,23 @@
                 "title": "MLT Srl",
                 "logo": "",
                 "role": "Socio fondatore",
-                "fromTo": "gen 2014 \u2013 ago 2016",
+                "fromTo": "gen 2014 – ago 2016",
                 "place": "Giulianova",
-                "description": "Socio fondatore | Attivit\u00e0 di divulgazione sportiva sul calcio dilettantistico locale | Implementazione portale abruzzosullarete.it"
+                "description": "Socio fondatore | Attività di divulgazione sportiva sul calcio dilettantistico locale | Implementazione portale abruzzosullarete.it"
             },
             {
                 "title": "Solution CRM",
                 "logo": "",
                 "role": "Sviluppatore di software gestionale web oriented, modulare integrato con sistemi esterni, in PHP",
-                "fromTo": "nov 2015 \u2013 mar 2017",
+                "fromTo": "nov 2015 – mar 2017",
                 "place": "Ecoservizigroup Srl - Giulianova",
-                "description": "Progettazione e Sviluppo software gestionale web-oriented per consentire l'accesso e l'inserimento a dati di natura anagrafica, storico corsi, visite mediche nell'ambito della sicurezza sul posto di lavoro. Il software integrabile con sistemi esterni \u00e8 realizzato con struttura modulare e permette relazioni statistiche per pianificare e prevedere azioni future."
+                "description": "Progettazione e Sviluppo software gestionale web-oriented per consentire l'accesso e l'inserimento a dati di natura anagrafica, storico corsi, visite mediche nell'ambito della sicurezza sul posto di lavoro. Il software integrabile con sistemi esterni è realizzato con struttura modulare e permette relazioni statistiche per pianificare e prevedere azioni future."
             },
             {
                 "title": "Tirocinio Tecnocall",
                 "logo": "",
                 "role": "Sviluppatore applicazioni Web in PHP",
-                "fromTo": "nov 2016 \u2013 mag 2017",
+                "fromTo": "nov 2016 – mag 2017",
                 "place": "Tecnocall srl - Pescara",
                 "description": "Sviluppo portale web per servizi alle aziende nel ramo alberghiero, moduli per gestionale interno in YII2, applicativi di interrogazione e controllo sistemi Asterisk per centralini."
             }
@@ -489,11 +542,11 @@
     "bazzWord": {
         "senior developer": {
             "definition": "This figure creates the application components (programs) and the necessary data structures as defined by the technical specifications. He/she carries out unit tests of the modules developed and deals with aspects related to deployment/release management in production. He/she collaborates with the project team in preparing the systems and performance tests and he supports the preparation and execution of integration tests.",
-            "mainResponsabilities": "Guide the software quality and performance, Develop or modify the necessary application components and data structures as defined by the architecture shared with the system architect in accordance with the operability criteria, Create the development modules that interface with the DMS products using the appropriate development tool kits, all graphic objects (images, icons, buttons, effects, etc.), page layouts (texts, background, borders, etc.), animations, etc.\u2022 Produce or modify components for the automation of unit testing, in accordance with the methodologies intended to be used, Support the Analysts with functional analysis work on an occasional basis, Collaborate with the Analysts in designing the system and performance tests and support the preparation and execution of integration tests\u2022 Test the individual programs and participate in the testing of the respective procedures, Prepare or modify the \u201cstoryboard\u201d for the presentation and browsing procedures, Manage anomalies found during functional testing/user testing/operational support, and direct the resolution of the problem by the development or maintenance group, Store and update all information (sources, tests, documents) relating to the life-cycle of the applications within Enel systems, Draw up and update the program documentation, Collaborate, if required, in defining and documenting the system architectures, Deals with any aspect related to the deploy/release management in production.",
-            "specificSkills": "Knowledge of the required environments, languages and development and programming tools. In-depth knowledge of the required programming language and the respective analysis, design, programming and testing techniques, General knowledge of the required architectures, DBMS and operational environments. , Knowledge of the techniques for the execution and implementation of unit and system tests., Knowledge of the functional aspect on the pertaining module., Knowledge of the Agile methodology. , Problem determination skills, Ability to optimize the code to minimize resource usage , Ability to write technical documentation and user manuals When the resource is involved in activity carried out in Agile, the following skills are requested: Do all necessary work to achieve the objectives of the sprint and the project release in accordance with the Vision and Done Set: Collaborate with the Product Owner to keep the Backlog up to date and with the right degree of detail, Estimate \u201cUser Stories\u201d and other activities in the Backlog, Carry out analysis and design (including UX and architecture), Develop or customize the products within the scope, Develop tests within the scope (Unit, Integration, Performance, Function and Non-Functional)., Design testing cards, Develop test automation, Carry out automated and manual tests to ensure product quality, Document the solution\u2019s life cycle in accordance with Enel standards"
+            "mainResponsabilities": "Guide the software quality and performance, Develop or modify the necessary application components and data structures as defined by the architecture shared with the system architect in accordance with the operability criteria, Create the development modules that interface with the DMS products using the appropriate development tool kits, all graphic objects (images, icons, buttons, effects, etc.), page layouts (texts, background, borders, etc.), animations, etc.• Produce or modify components for the automation of unit testing, in accordance with the methodologies intended to be used, Support the Analysts with functional analysis work on an occasional basis, Collaborate with the Analysts in designing the system and performance tests and support the preparation and execution of integration tests• Test the individual programs and participate in the testing of the respective procedures, Prepare or modify the “storyboard” for the presentation and browsing procedures, Manage anomalies found during functional testing/user testing/operational support, and direct the resolution of the problem by the development or maintenance group, Store and update all information (sources, tests, documents) relating to the life-cycle of the applications within Enel systems, Draw up and update the program documentation, Collaborate, if required, in defining and documenting the system architectures, Deals with any aspect related to the deploy/release management in production.",
+            "specificSkills": "Knowledge of the required environments, languages and development and programming tools. In-depth knowledge of the required programming language and the respective analysis, design, programming and testing techniques, General knowledge of the required architectures, DBMS and operational environments. , Knowledge of the techniques for the execution and implementation of unit and system tests., Knowledge of the functional aspect on the pertaining module., Knowledge of the Agile methodology. , Problem determination skills, Ability to optimize the code to minimize resource usage , Ability to write technical documentation and user manuals When the resource is involved in activity carried out in Agile, the following skills are requested: Do all necessary work to achieve the objectives of the sprint and the project release in accordance with the Vision and Done Set: Collaborate with the Product Owner to keep the Backlog up to date and with the right degree of detail, Estimate “User Stories” and other activities in the Backlog, Carry out analysis and design (including UX and architecture), Develop or customize the products within the scope, Develop tests within the scope (Unit, Integration, Performance, Function and Non-Functional)., Design testing cards, Develop test automation, Carry out automated and manual tests to ensure product quality, Document the solution’s life cycle in accordance with Enel standards"
         },
         "Design & Build": {
-            "ita": "Design-build \u00e8 un sistema di consegna del progetto utilizzato nel settore delle costruzioni. \u00c8 un metodo per fornire un progetto in cui i servizi di progettazione e costruzione sono contratti da una singola entit\u00e0 nota come progettista o costruttore",
+            "ita": "Design-build è un sistema di consegna del progetto utilizzato nel settore delle costruzioni. È un metodo per fornire un progetto in cui i servizi di progettazione e costruzione sono contratti da una singola entità nota come progettista o costruttore",
             "Traditional Project Delivery": "The Owner must manage two separate contracts which all-too-often creates an adversarial relationship between the designer and the contractor. If something goes wrong or an unforeseen circumstance requires changes, the designer and contractor blame one another for the cost overruns or schedule changes, often leading to litigation and delays which add to the project cost.",
             "Design-Build Project Delivery": "The Owner manages only one contract with a single point of responsibility. The designer and contractor work together from the beginning, as a team, providing unified project recommendations to fit the Owner's schedule and budget. Any changes are addressed by the entire team, leading to collaborative problem-solving and innovation, not excuses or blame-shifting. While single-source contracting is the fundamental difference between design-build and the old ways, equally important is the culture of collaboration inherent in design-build."
         },
@@ -501,31 +554,31 @@
             "what": "With the move to continuous integration and continuous delivery, build management has become an important part of the software development and testing lifecycle. Build management is the process of collecting all of the assets to be included in a software release, performing all the automated tasks to compile, build and test the system and then deploy onto the development and testing environments in preparation for staging."
         },
         "SpringBoot": {
-            "ita": "Spring Boot \u00e8 il framework per creare applicazioni basate sul framework Java Spring che sono subito pronte per ambienti di produzione e sono maggiormente utilizzate per creare microservizi",
+            "ita": "Spring Boot è il framework per creare applicazioni basate sul framework Java Spring che sono subito pronte per ambienti di produzione e sono maggiormente utilizzate per creare microservizi",
             "eng": "Spring Boot is an open source Java-based framework used to create a micro Service. It helps you to create Spring-powered, production-grade applications and services with absolute minimum fuss"
         },
         "J2EE": {
-            "ita": "La piattaforma Java\u2122 2, Enterprise Edition (J2EE) fornisce uno standard per lo sviluppo di applicazioni enterprise a pi\u00f9 livelli",
+            "ita": "La piattaforma Java™ 2, Enterprise Edition (J2EE) fornisce uno standard per lo sviluppo di applicazioni enterprise a più livelli",
             "eng": "J2EE stands for Java 2 Platform, Enterprise Edition. J2EE is the standard platform for developing applications in the enterprise and is designed for enterprise applications that run on servers. J2EE provides APIs that let developers create workflows and make use of resources such as databases or web services. J2EE consists of a set of APIs. Developers can use these APIs to build applications for business computing."
         },
         "Angular": {
-            "ita": "Angular 2+ (o semplicemente Angular) \u00e8 un framework open source per lo sviluppo di applicazioni web con licenza MIT, evoluzione di AngularJS. Sviluppato principalmente da Google, la sua prima release \u00e8 avvenuta il 14 settembre 2016. Angular \u00e8 un framework per la realizzazione di interfacce utente, moderno, veloce, robusto e flessibile",
+            "ita": "Angular 2+ (o semplicemente Angular) è un framework open source per lo sviluppo di applicazioni web con licenza MIT, evoluzione di AngularJS. Sviluppato principalmente da Google, la sua prima release è avvenuta il 14 settembre 2016. Angular è un framework per la realizzazione di interfacce utente, moderno, veloce, robusto e flessibile",
             "eng": "Angular is a platform for building mobile and desktop web applications. Angular is an open-source, JavaScript framework written in TypeScript. Google maintains it, and its primary purpose is to develop single-page applications"
         },
         "Atlassian": {
-            "ita": "Atlassian Corporation Plc \u00e8 una compagnia di software enterprise che sviluppa prodotti per sviluppatori di software, project management e per la gestione dei contenuti. \u00c8 nota soprattutto per la sua applicazione di tracciamento delle segnalazioni, Jira, e per l'applicazione wiki e collaborativa Confluence",
+            "ita": "Atlassian Corporation Plc è una compagnia di software enterprise che sviluppa prodotti per sviluppatori di software, project management e per la gestione dei contenuti. È nota soprattutto per la sua applicazione di tracciamento delle segnalazioni, Jira, e per l'applicazione wiki e collaborativa Confluence",
             "eng": "Atlassian Corporation is an Australian software development company for the IT industry. It is best known for its JIRA and Confluence bug tracking system. The company is headquartered in Seattle, USA. In total, the company has nine offices in six countries and serves more than 100,000 customers"
         },
         "MySQL": {
-            "ita": "MySQL o Oracle MySQL \u00e8 un relational database management system (RDBMS) composto da un client a riga di comando e un server. Entrambi sono multipiattaforma[2] e sono disponibi ufficialmente su praticamente tutte le distribuzioni conosciute, come Debian, Ubuntu e CentOS[3], sebbene lo abbiano sostanzialmente sostituito con MariaDB a partire dal 2012.",
+            "ita": "MySQL o Oracle MySQL è un relational database management system (RDBMS) composto da un client a riga di comando e un server. Entrambi sono multipiattaforma[2] e sono disponibi ufficialmente su praticamente tutte le distribuzioni conosciute, come Debian, Ubuntu e CentOS[3], sebbene lo abbiano sostanzialmente sostituito con MariaDB a partire dal 2012.",
             "eng": "MySQL is a database system used by many websites on the Internet. It is based on SQL. Many ways of doing things in SQL are similar in MySQL. The data is structured in tables in MySQL. And to extract data from the tables queries are used.For example: SELECT id_number FROM main_database WHERE name='John',This query will return the 'id_number' of the person named 'John' from the table named 'main_database'."
         },
         "Oracle SQL Developer": {
-            "ita": "Oracle SQL Developer \u00e8 un ambiente di sviluppo integrato per lavorare con SQL nei database Oracle. Oracle Corporation fornisce questo prodotto gratuitamente; utilizza il Java Development Kit",
+            "ita": "Oracle SQL Developer è un ambiente di sviluppo integrato per lavorare con SQL nei database Oracle. Oracle Corporation fornisce questo prodotto gratuitamente; utilizza il Java Development Kit",
             "eng": "Oracle SQL Developer is an Integrated development environment (IDE) for working with SQL in Oracle databases. Oracle Corporation provides this product free; it uses the Java Development Kit."
         },
         "Oracle Database": {
-            "ita": "Oracle Database \u00e8 uno tra i pi\u00f9 famosi software di database management system sviluppato da Oracle Corporation. Scritto in linguaggio C, che fa parte dei cosiddetti RDBMS ovvero di sistemi di database basati sul modello relazionale affermatosi come standard di riferimento dei database dell'ultimo decennio",
+            "ita": "Oracle Database è uno tra i più famosi software di database management system sviluppato da Oracle Corporation. Scritto in linguaggio C, che fa parte dei cosiddetti RDBMS ovvero di sistemi di database basati sul modello relazionale affermatosi come standard di riferimento dei database dell'ultimo decennio",
             "eng": "Oracle Database (commonly referred to as Oracle DBMS, Oracle Autonomous Database, or simply as Oracle) is a multi-model[4] database management system produced and marketed by Oracle Corporation. It is a database commonly used for running online transaction processing (OLTP), data warehousing (DW) and mixed (OLTP & DW) database workloads"
         },
         "MySql vs Oracle DB": {
@@ -533,7 +586,7 @@
             "eng": "MySQL and Oracle SQL are both RDBMSs (relational database management systems) owned by Oracle Corporation. MySQL is built to be primarily free and open-source, while Oracle is primarily built to be commercial and paid. MySQL is also more customizable than Oracle which is because Oracle is a finished product"
         },
         "TypeScript": {
-            "ita": "TypeScript \u00e8 un linguaggio di programmazione open source sviluppato da Microsoft. Si tratta di un'estensione di JavaScript che basa le sue caratteristiche su ECMAScript 6",
+            "ita": "TypeScript è un linguaggio di programmazione open source sviluppato da Microsoft. Si tratta di un'estensione di JavaScript che basa le sue caratteristiche su ECMAScript 6",
             "eng": "TypeScript is JavaScript with syntax for types. TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale"
         },
         "HTML": {
@@ -561,12 +614,12 @@
             "eng": ""
         },
         "Full Stack": {
-            "ita": "Il full stack developer \u00e8 un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend",
+            "ita": "Il full stack developer è un programmatore che conosce tutti gli aspetti della programmazione, sia frontend che backend",
             "eng": "Full stack technology refers to the entire depth of a computer system application, and full stack developers straddle two separate web development domains: the front end and the back end. The front end includes everything that a client, or site viewer, can see and interact with"
         },
         "Docker": {
-            "ita": "Docker \u00e8 un popolare software libero progettato per eseguire processi informatici in ambienti isolabili, minimali e facilmente distribuibili chiamati container Linux, con l'obiettivo di semplificare i processi di deployment di applicazioni software",
-            "eng": "Docker is an open source containerization platform. It enables developers to package applications into containers\u2014standardized executable components combining application source code with the operating system (OS) libraries and dependencies required to run that code in any environment"
+            "ita": "Docker è un popolare software libero progettato per eseguire processi informatici in ambienti isolabili, minimali e facilmente distribuibili chiamati container Linux, con l'obiettivo di semplificare i processi di deployment di applicazioni software",
+            "eng": "Docker is an open source containerization platform. It enables developers to package applications into containers—standardized executable components combining application source code with the operating system (OS) libraries and dependencies required to run that code in any environment"
         },
         "": {
             "ita": "",
@@ -632,7 +685,7 @@
                 "expire_date": "2025-09-30"
             },
             {
-                "title": "Professional Scrum Master\u2122 Certification",
+                "title": "Professional Scrum Master™ Certification",
                 "logo": "/images/Certifications/Professional-Scrum-Master-1-Certification.png",
                 "description": [
                     "The Professional Scrum Master (PSM I) is recognized by the industry as a certification that demonstrates a fundamental level of Scrum mastery."
@@ -658,6 +711,6 @@
         ]
     },
     "Principal Skills": {
-        "": "Competenze funzionali:, Buona conoscenza dei processi di bidding,Conoscenza del mercato elettrico Italiano,Conoscenza del processo di settlement, Competenze tecniche:,Full Stack,CD/CI Management,Docker (container env),Technology Architect ,Configuration & Release Management   ,Suite Atlassian (Jira, Confluence, Bamboo),MySQL   ,Oracle SQL Developer   ,Oracle Database   ,J2EE,Spring MVC (Model View Controller),Spring Boot   ,Restful API,JavaScript ,TypeScript Programming Language   ,Angular,React,HTML (Hypertext Markup Language)     ,Cascading Style Sheets (CSS),Python,Blockchain, Competenze trasversali generali:,capacit\u00e0 di lavorare in team ed in autonomia; ,capacit\u00e0 di comunicazione e interazione con untenti finali;,capaict\u00e0 di organizzazione e gestione del tempo nel rispetto delle tempistiche progettuali e con orientamento all'obiettivo,conoscenza delle motodologie di delivery sia in modalit\u00e0 Waterfall che Agile Scrum,conoscenza delle architetture di base,rtificazioni:,Certificazione Agile Scrum Developer (15.07.2019),Certificazione AWS Cloud (28.04.2021),Certificazione DevOps (30.11.2021)"
+        "": "Competenze funzionali:, Buona conoscenza dei processi di bidding,Conoscenza del mercato elettrico Italiano,Conoscenza del processo di settlement, Competenze tecniche:,Full Stack,CD/CI Management,Docker (container env),Technology Architect ,Configuration & Release Management   ,Suite Atlassian (Jira, Confluence, Bamboo),MySQL   ,Oracle SQL Developer   ,Oracle Database   ,J2EE,Spring MVC (Model View Controller),Spring Boot   ,Restful API,JavaScript ,TypeScript Programming Language   ,Angular,React,HTML (Hypertext Markup Language)     ,Cascading Style Sheets (CSS),Python,Blockchain, Competenze trasversali generali:,capacità di lavorare in team ed in autonomia; ,capacità di comunicazione e interazione con untenti finali;,capaictà di organizzazione e gestione del tempo nel rispetto delle tempistiche progettuali e con orientamento all'obiettivo,conoscenza delle motodologie di delivery sia in modalità Waterfall che Agile Scrum,conoscenza delle architetture di base,rtificazioni:,Certificazione Agile Scrum Developer (15.07.2019),Certificazione AWS Cloud (28.04.2021),Certificazione DevOps (30.11.2021)"
     }
 }

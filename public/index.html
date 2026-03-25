@@ -668,6 +668,7 @@
                 const r = data.resume;
 
                 const fixIcon = (cls) => {
+                    if (!cls) return 'fa-solid fa-link';
                     if (cls.includes('fa-linkedin')) return 'fa-brands fa-linkedin';
                     if (cls.includes('fa-github')) return 'fa-brands fa-github';
                     if (cls.includes('fa-instagram')) return 'fa-brands fa-instagram';
@@ -727,26 +728,31 @@
                     `).join(''));
                 }
 
-                // Skills Categorization
-                const groups = {
-                    "intelligence.bin": ["GenAI", "AI Engineer", "AI Orchestrator", "RAG Arch", "Ollama", "Local LLM", "Agent", "llama.cpp"],
-                    "architecture.sys": ["Technology Architect", "Holistic Architect", "Cloud Architect", "AWS Cloud", "Azure Cloud"],
-                    "backend (i/o)": ["NodeJs", "bash/shell/scripting", "Blockchain Management", "Python"],
-                    "execution (ui)": ["Full Stack", "React", "JavaScript", "Web and Mobile applications"]
-                };
-
+                // Skills Categorization (Dynamic based on Category field)
                 const container = document.getElementById('skills-container');
-                if (container) {
-                    container.innerHTML = Object.entries(groups).map(([name, keywords]) => {
-                        const matched = r.skills.filter(s => keywords.some(k => s.name.toLowerCase().includes(k.toLowerCase())));
-                        if (matched.length === 0) return '';
+                if (container && r.skills) {
+                    // Group skills by category
+                    const skillGroups = r.skills.reduce((acc, s) => {
+                        const cat = s.category || "other.sys";
+                        if (!acc[cat]) acc[cat] = [];
+                        acc[cat].push(s);
+                        return acc;
+                    }, {});
 
-                        // Assign CSS class based on group name
-                        const cssClass = "group-" + name.split('.')[0].split(' ')[0];
+                    // Reorder categories so bins appear first or in desired order
+                    const sortedCats = Object.keys(skillGroups).sort((a, b) => {
+                        if (a.includes('.bin') && !b.includes('.bin')) return -1;
+                        if (!a.includes('.bin') && b.includes('.bin')) return 1;
+                        return a.localeCompare(b);
+                    });
+
+                    container.innerHTML = sortedCats.map(cat => {
+                        const matched = skillGroups[cat];
+                        const cssClass = "group-" + cat.split('.')[0].split(' ')[0].replace(/[^a-z]/gi, '');
 
                         return `
                             <div class="stack-group ${cssClass}">
-                                <h4>${name}</h4>
+                                <h4>${cat}</h4>
                                 <div class="skills-grid">
                                     ${matched.map(s => `
                                         <div class="skill-pill">

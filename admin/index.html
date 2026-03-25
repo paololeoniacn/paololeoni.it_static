@@ -4,22 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard — CV Orchestrator</title>
+  <title>Admin Dashboard | CV Orchestrator</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://kit.fontawesome.com/b3e206013a.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root {
-      --ink: #0d0d0d;
-      --paper: #f5f0e8;
+      --bg: #050505;
+      --surface: #0f0f0f;
+      --surface-accent: #1a1a1a;
       --accent: #ff4d00;
-      /* Coerenza con il Frontend */
-      --muted: #6b6457;
-      --border: #c8bfaf;
-      --panel: #ece7dc;
-      --highlight: #e8d5c0;
-      --white: #fdfaf5;
+      --accent-soft: rgba(255, 77, 0, 0.1);
+      --text: #ffffff;
+      --text-dim: #888888;
+      --border: #222222;
+      --success: #00ff66;
     }
 
     * {
@@ -29,300 +31,351 @@
     }
 
     body {
-      font-family: 'IBM Plex Sans', sans-serif;
-      background: #1a1612;
-      color: var(--ink);
-      min-height: 100vh;
-    }
-
-    /* ===== TOP BAR ===== */
-    .topbar {
-      background: var(--ink);
-      color: var(--paper);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       display: flex;
-      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .editor-container {
+      width: 480px;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .header {
+      padding: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
       justify-content: space-between;
-      padding: 12px 28px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 2px solid var(--accent);
+      align-items: center;
+      background: var(--bg);
     }
 
-    .topbar-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .topbar-title span {
+    .header h1 {
+      font-size: 1rem;
+      font-family: 'IBM Plex Mono', monospace;
       color: var(--accent);
     }
 
-    .topbar-actions {
+    .toolbar {
+      padding: 15px 20px;
       display: flex;
       gap: 10px;
+      background: var(--surface-accent);
+      border-bottom: 1px solid var(--border);
     }
 
     .btn {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 7px 16px;
-      border: 1.5px solid currentColor;
+      background: #222;
+      color: #ccc;
+      border: 1px solid #333;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
       cursor: pointer;
-      letter-spacing: 0.08em;
-      transition: all 0.15s;
-      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .btn-primary {
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+    }
+
+    .btn-sm {
+      background: #222;
+      color: #aaa;
+      border: 1px solid #333;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-sm:hover:not(:disabled) {
+      background: var(--accent-soft);
       color: var(--accent);
       border-color: var(--accent);
     }
 
-    .btn-primary:hover {
-      background: var(--accent);
-      color: var(--white);
+    .btn-sm:disabled {
+      opacity: 0.1;
+      cursor: not-allowed;
     }
 
-    .btn-save {
-      color: #4caf82;
-      border-color: #4caf82;
-    }
-
-    .btn-save:hover {
-      background: #4caf82;
-      color: #0d0d0d;
-    }
-
-    .btn-secondary {
-      color: var(--paper);
-      border-color: #555;
-    }
-
-    .app-layout {
-      display: flex;
-      justify-content: center;
-      padding: 40px;
-    }
-
-    .editor-container {
-      background: var(--paper);
-      width: 100%;
-      max-width: 900px;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    .editor-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
     }
 
     .section {
       margin-bottom: 30px;
     }
 
-    .section h2 {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
+    .section-title {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      color: var(--accent);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px;
-      margin-bottom: 20px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .field-group {
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .field {
       margin-bottom: 15px;
     }
 
-    .field-label {
+    label {
       display: block;
-      font-size: 11px;
-      color: var(--muted);
+      font-size: 0.8rem;
+      color: var(--text-dim);
       margin-bottom: 5px;
-      font-weight: 600;
     }
 
-    .field-input,
-    .field-textarea {
+    input,
+    textarea {
       width: 100%;
-      padding: 10px;
+      background: #000;
       border: 1px solid var(--border);
-      background: var(--white);
+      padding: 10px;
       border-radius: 4px;
+      color: white;
       font-family: inherit;
+      font-size: 0.9rem;
     }
 
-    .field-textarea {
-      min-height: 100px;
-    }
-
-    .list-item {
-      background: var(--panel);
-      padding: 20px;
-      border-radius: 8px;
+    .entry-card {
+      background: #151515;
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: 6px;
       margin-bottom: 15px;
       position: relative;
     }
 
-    .btn-del {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      color: #e05050;
-      cursor: pointer;
+    .preview-container {
+      flex: 1;
+      background: #f5f0e8;
+      padding: 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .btn-add {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+    #cv-preview-frame {
+      background: #f5f0e8;
+      width: 800px;
+      padding: 50px;
+      color: #0d0d0d;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
 
-    /* Toast Notification */
     .toast {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      background: #4caf82;
-      color: white;
-      padding: 15px 30px;
+      background: var(--success);
+      color: black;
+      padding: 12px 24px;
       border-radius: 4px;
-      opacity: 0;
-      transition: 0.3s;
-    }
-
-    .toast.show {
-      opacity: 1;
+      z-index: 1000;
+      display: none;
     }
   </style>
 </head>
 
 <body>
-
-  <div class="topbar">
-    <div class="topbar-title"><span>CV</span> ORCHESTRATOR — Admin Backend</div>
-    <div class="topbar-actions">
-      <button class="btn btn-save" onclick="downloadJSON()">💾 Export JSON</button>
-      <a href="/public/" class="btn btn-primary" style="text-decoration: none;">👁 View Public Profile</a>
+  <div class="editor-container">
+    <div class="header">
+      <h1>$> orchestrator --admin</h1>
+      <div id="status-dot" style="width: 8px; height: 8px; background: grey; border-radius: 50%;"></div>
     </div>
-  </div>
-
-  <div class="app-layout">
-    <div class="editor-container" id="editorRoot">
-      <p>Loading central data from resumeData.json...</p>
+    <div class="toolbar">
+      <button class="btn primary" onclick="saveData()"><i class="fa-solid fa-cloud-arrow-up"></i> Save to JSON</button>
+      <button class="btn" onclick="exportPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+      <button class="btn" onclick="exportHTML()"><i class="fa-solid fa-code"></i> HTML</button>
     </div>
+    <div id="editor" class="editor-scroll"></div>
   </div>
-
-  <div class="toast" id="toast">JSON Pronto per il download!</div>
-
+  <div class="preview-container">
+    <div id="cv-preview-frame"></div>
+  </div>
+  <div id="toast" class="toast">Changes saved!</div>
   <script>
-    let resumeData = null;
-
+    window.onerror = (m, s, l, c, e) => {
+      console.error("ADMIN CRASH:", m, "at", l + ":" + c, e);
+      alert("Admin Error: " + m + " at " + l);
+    };
+    let db = null;
     async function loadData() {
       try {
         const res = await fetch('../data/resumeData.json');
-        resumeData = await res.json();
-        renderEditor();
+        db = await res.json();
+        document.getElementById('status-dot').style.background = '#00ff66';
+        renderEditor(); updatePreview();
+      } catch (e) { console.error("Load failed:", e); }
+    }
+    async function saveData() {
+      try {
+        const res = await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(db) });
+        if (res.ok) showToast("Saved to JSON!");
       } catch (e) {
-        console.error("Failed to load JSON", e);
+        const blob = new Blob([JSON.stringify(db, null, 4)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'resumeData.json'; a.click();
+        showToast("Server error. Downloaded local copy.");
       }
     }
-
+    function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
     function renderEditor() {
-      const root = document.getElementById('editorRoot');
-      const main = resumeData.main;
-      const res = resumeData.resume;
+      const container = document.getElementById('editor'); if (!db) return;
 
-      root.innerHTML = `
-            <div class="section">
-                <h2>01 · Personal Identity</h2>
-                <div class="field-group">
-                    <label class="field-label">Occupation / Title</label>
-                    <input type="text" class="field-input" value="${main.occupation}" oninput="resumeData.main.occupation = this.value">
-                </div>
-                <div class="field-group">
-                    <label class="field-label">Professional Bio</label>
-                    <textarea class="field-textarea" oninput="resumeData.main.bio = this.value">${main.bio}</textarea>
-                </div>
-            </div>
+      // Save open states
+      const states = {};
+      container.querySelectorAll('details').forEach(d => { if (d.id) states[d.id] = d.open; });
 
-            <div class="section">
-                <h2>02 · Work Experience</h2>
-                <div id="work-items">
-                    ${res.work.map((w, idx) => `
-                        <div class="list-item">
-                            <button class="btn-del" onclick="removeItem('work', ${idx})"><i class="fa-solid fa-trash"></i></button>
-                            <div class="field-group">
-                                <label class="field-label">Company</label>
-                                <input type="text" class="field-input" value="${w.company}" oninput="resumeData.resume.work[${idx}].company = this.value">
-                            </div>
-                            <div class="field-group">
-                                <label class="field-label">Role</label>
-                                <input type="text" class="field-input" value="${w.title}" oninput="resumeData.resume.work[${idx}].title = this.value">
-                            </div>
-                            <div class="field-group">
-                                <label class="field-label">Years</label>
-                                <input type="text" class="field-input" value="${w.years}" oninput="resumeData.resume.work[${idx}].years = this.value">
-                            </div>
-                            <div class="field-group">
-                                <label class="field-label">Detailed Description</label>
-                                <textarea class="field-textarea" oninput="resumeData.resume.work[${idx}].description = this.value">${w.description}</textarea>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                <button class="btn-add" onclick="addItem('work')">+ Add Experience</button>
-            </div>
+      container.innerHTML = '';
+      // Identity
+      let html = '<details id="det-id" class="section"><summary class="section-title">Identity & Contacts</summary><div style="padding-top:10px;">' +
+        '<div class="field"><label>Name</label><input type="text" value="' + (db.main.name || '') + '" oninput="db.main.name=this.value;updatePreview();"></div>' +
+        '<div class="field"><label>Email</label><input type="text" value="' + (db.main.cv.cvMail || '') + '" oninput="db.main.cv.cvMail=this.value;updatePreview();"></div>' +
+        '<div class="field"><label>Birth</label><input type="text" value="' + (db.main.cv.cvDatePlaceOfBirth || '') + '" oninput="db.main.cv.cvDatePlaceOfBirth=this.value;updatePreview();"></div>' +
+        '<div class="field"><label>Website</label><input type="text" value="' + (db.main.website || '') + '" oninput="db.main.website=this.value;updatePreview();"></div>' +
+        '</div></details>';
 
-            <div class="section">
-                <h2>03 · Skills (Pulsantiera)</h2>
-                <div id="skill-items">
-                    ${res.skills.map((s, idx) => `
-                        <div style="display:flex; gap:10px; margin-bottom:10px;">
-                            <input type="text" class="field-input" style="flex:2" value="${s.name}" oninput="resumeData.resume.skills[${idx}].name = this.value">
-                            <input type="text" class="field-input" style="flex:1" value="${s.level}" oninput="resumeData.resume.skills[${idx}].level = this.value">
-                            <button class="btn-del" style="position:static" onclick="removeItem('skills', ${idx})"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-                    `).join('')}
-                </div>
-                <button class="btn-add" onclick="addItem('skills')">+ Add Skill</button>
-            </div>
-        `;
+      // Social
+      html += '<details id="det-social" class="section"><summary class="section-title">Social Links (LinkedIn, IG, 2x GitHub)</summary><div style="padding-top:10px;">' +
+        '<div class="section-title" style="font-size:0.65rem; border:none; margin-bottom:5px;">LinkedIn (01)</div>' +
+        '<div class="field"><label>Label</label><input type="text" value="' + (db.main.social[1]?.name || '') + '" oninput="db.main.social[1].name=this.value; db.main.social[1].className=\'fa fa-linkedin\'; updatePreview();"></div>' +
+        '<div class="field"><label>URL</label><input type="text" value="' + (db.main.social[1]?.url || '') + '" oninput="db.main.social[1].url=this.value; db.main.social[1].className=\'fa fa-linkedin\'; updatePreview();"></div>' +
+        '<div class="section-title" style="font-size:0.65rem; border:none; margin-bottom:5px;">Instagram (02)</div>' +
+        '<div class="field"><label>Label</label><input type="text" value="' + (db.main.social[2]?.name || '') + '" oninput="db.main.social[2].name=this.value; db.main.social[2].className=\'fa fa-instagram\'; updatePreview();"></div>' +
+        '<div class="field"><label>URL</label><input type="text" value="' + (db.main.social[2]?.url || '') + '" oninput="db.main.social[2].url=this.value; db.main.social[2].className=\'fa fa-instagram\'; updatePreview();"></div>' +
+        '<div class="section-title" style="font-size:0.65rem; border:none; margin-bottom:5px;">GitHub Work (03)</div>' +
+        '<div class="field"><label>Label</label><input type="text" value="' + (db.main.social[3]?.name || '') + '" oninput="db.main.social[3].name=this.value; db.main.social[3].className=\'fa fa-github\'; updatePreview();"></div>' +
+        '<div class="field"><label>URL</label><input type="text" value="' + (db.main.social[3]?.url || '') + '" oninput="db.main.social[3].url=this.value; db.main.social[3].className=\'fa fa-github\'; updatePreview();"></div>' +
+        '<div class="section-title" style="font-size:0.65rem; border:none; margin-bottom:5px;">GitHub Personal (04)</div>' +
+        '<div class="field"><label>Label</label><input type="text" value="' + (db.main.social[4]?.name || '') + '" oninput="if(!db.main.social[4]) db.main.social[4]={}; db.main.social[4].name=this.value; db.main.social[4].className=\'fa fa-github\'; updatePreview();"></div>' +
+        '<div class="field"><label>URL</label><input type="text" value="' + (db.main.social[4]?.url || '') + '" oninput="if(!db.main.social[4]) db.main.social[4]={}; db.main.social[4].url=this.value; db.main.social[4].className=\'fa fa-github\'; updatePreview();"></div>' +
+        '</div></details>';
+
+      // Experience
+      const workHtml = db.resume.work.map((w, i) => {
+        return '<div class="entry-card">' +
+          '<div style="display:flex; justify-content: space-between; margin-bottom: 10px;">' +
+          '<span style="font-size:0.7rem; color:var(--accent);">W_ITEM_' + i + '</span>' +
+          '<div style="display:flex; gap:5px;">' +
+          '<button class="btn-sm" onclick="moveEntry(' + i + ', -1)" ' + (i === 0 ? 'disabled' : '') + '><i class="fa-solid fa-arrow-up"></i></button>' +
+          '<button class="btn-sm" onclick="moveEntry(' + i + ', 1)" ' + (i === db.resume.work.length - 1 ? 'disabled' : '') + '><i class="fa-solid fa-arrow-down"></i></button>' +
+          '<span onclick="removeEntry(' + i + ')" style="color:red; cursor:pointer; margin-left:10px;">✕</span>' +
+          '</div></div>' +
+          '<input type="text" value="' + w.company + '" oninput="db.resume.work[' + i + '].company=this.value;updatePreview();" style="margin-bottom:5px;">' +
+          '<input type="text" value="' + w.title + '" oninput="db.resume.work[' + i + '].title=this.value;updatePreview();" style="margin-bottom:5px;">' +
+          '<input type="text" value="' + w.years + '" oninput="db.resume.work[' + i + '].years=this.value;updatePreview();" style="margin-bottom:5px; font-size:0.75rem;">' +
+          '<textarea oninput="db.resume.work[' + i + '].description=this.value;updatePreview();" style="height:80px;">' + w.description + '</textarea>' +
+          '</div>';
+      }).join('');
+      html += '<details id="det-work" class="section"><summary class="section-title">Work Experience</summary><div style="padding-top:10px;">' + workHtml + '<button class="btn" style="width:100%; justify-content:center;" onclick="addEntry()">+ Add Experience</button></div></details>';
+
+      // Skills
+      const skillsArr = db.resume.skills || [];
+      const skillsHtml = skillsArr.map((s, i) => {
+        return '<div style="background:#151515; padding:10px; border-radius:4px; margin-bottom:10px; border:1px solid #222;">' +
+          '<div class="field" style="margin-bottom:8px;"><label style="font-size:0.6rem;">Name</label><input type="text" value="' + (s.name || '') + '" oninput="db.resume.skills[' + i + '].name=this.value;updatePreview();"></div>' +
+          '<div style="display:flex; gap:10px;">' +
+          '<div class="field" style="flex:1; margin-bottom:0;"><label style="font-size:0.6rem;">Category (Bin)</label><input type="text" value="' + (s.category || '') + '" oninput="db.resume.skills[' + i + '].category=this.value;updatePreview();"></div>' +
+          '<button class="btn-sm" style="align-self:flex-end;" onclick="db.resume.skills.splice(' + i + ',1);renderEditor();updatePreview();">✕</button></div></div>';
+      }).join('');
+      html += '<details id="det-skills" class="section"><summary class="section-title">Skills & Tech (Bin Support)</summary><div style="padding-top:10px;">' + skillsHtml +
+        '<button class="btn" style="width:100%; justify-content:center; margin-top:10px;" onclick="if(!db.resume.skills)db.resume.skills=[]; db.resume.skills.push({name:\'New Skill\', category:\'intelligence.bin\'});renderEditor();updatePreview();">+ Add Skill</button></div></details>';
+
+      container.innerHTML = html;
+
+      // Restore open states
+      for (let id in states) { const el = document.getElementById(id); if (el) el.open = states[id]; }
     }
+    function addEntry() { db.resume.work.unshift({ company: 'New', title: 'New Role', years: '2025', description: '' }); renderEditor(); updatePreview(); }
+    function moveEntry(i, dir) { let arr = db.resume.work; let t = i + dir; if (t >= 0 && t < arr.length) { [arr[i], arr[t]] = [arr[t], arr[i]]; renderEditor(); updatePreview(); } }
+    function removeEntry(i) { if (confirm("Remove?")) { db.resume.work.splice(i, 1); renderEditor(); updatePreview(); } }
+    function updatePreview() {
+      if (!db) return; const data = db.main; const r = db.resume;
+      const nameParts = data.name.split(' '); const last = nameParts.pop(); const first = nameParts.join(' ');
 
-    function addItem(type) {
-      if (type === 'work') {
-        resumeData.resume.work.push({ company: "New Company", title: "New Role", years: "2025", description: "" });
-      } else if (type === 'skills') {
-        resumeData.resume.skills.push({ name: "New Skill", level: "80%" });
-      }
-      renderEditor();
+      let html = '<style>' +
+        '.p-header { border-bottom: 3px solid #0d0d0d; padding-bottom: 20px; margin-bottom: 24px; }' +
+        '.p-name { font-family: "Inter", sans-serif; font-size: 38px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; }' +
+        '.p-name span { color: #b5401a; }' +
+        '.p-contact-row { display: flex; flex-wrap: wrap; gap: 6px 15px; margin-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #666; }' +
+        '.p-contact-item { background: #ece7dc; padding: 3px 8px; border-radius: 2px; }' +
+        '.p-contact-row a { color: #b5401a; text-decoration: none; font-weight: 500; }' +
+        '.p-section { margin-bottom: 25px; }' +
+        '.p-title { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: #b5401a; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 12px; letter-spacing: 0.1em; }' +
+        '.p-statement { font-size: 13.5px; line-height: 1.7; font-style: italic; color: #2a2420; }' +
+        '.p-entry { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #ccc; }' +
+        '.p-entry:last-child { border-bottom: none; }' +
+        '.p-entry-head { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }' +
+        '.p-entry-sub { font-size: 12px; color: #b5401a; font-weight: 600; }' +
+        '.p-entry-desc { font-size: 12.5px; line-height: 1.6; margin-top: 6px; color: #2a2420; }' +
+        '.p-tag-grid { display: flex; flex-wrap: wrap; gap: 6px; }' +
+        '.p-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; padding: 3px 9px; border: 1px solid #ccc; color: #666; background: #fdfaf5; }' +
+        '</style>';
+
+      html += '<div class="p-header"><h1 class="p-name">' + first + ' <span>' + last + '</span></h1><div class="p-contact-row">' +
+        '<span class="p-contact-item">' + data.cv.cvDatePlaceOfBirth + '</span>' +
+        '<span class="p-contact-item"><a href="mailto:' + data.cv.cvMail + '">' + data.cv.cvMail + '</a></span>' +
+        '<span class="p-contact-item"><a href="' + data.website + '" target="_blank">' + data.website + '</a></span>' +
+        (db.main.social[1] ? '<span class="p-contact-item"><a href="' + db.main.social[1].url + '" target="_blank">' + db.main.social[1].name + '</a> · Social</span>' : '') +
+        (db.main.social[2] ? '<span class="p-contact-item"><a href="' + db.main.social[2].url + '" target="_blank">' + db.main.social[2].name + '</a> · Social</span>' : '') +
+        (db.main.social[3] ? '<span class="p-contact-item"><a href="' + db.main.social[3].url + '" target="_blank">' + db.main.social[3].name + '</a> · Work</span>' : '') +
+        (db.main.social[4] ? '<span class="p-contact-item"><a href="' + db.main.social[4].url + '" target="_blank">' + db.main.social[4].name + '</a> · Personal</span>' : '') +
+        '</div></div>';
+
+      html += '<div class="p-section"><div class="p-title">Personal Statement</div><p class="p-statement">' + (data.cv?.cvPersonalStatement || '') + '</p></div>';
+
+      html += '<div class="p-section"><div class="p-title">Skills & Technologies</div><div class="p-tag-grid">' +
+        (r.skills || []).map(s => '<span class="p-tag">' + (s.name || '') + '</span>').join('') + '</div></div>';
+
+      html += '<div class="p-section"><div class="p-title">Experience</div>' + (r.work || []).map(w => {
+        return '<div class="p-entry"><div class="p-entry-head"><span>' + w.title + '</span><span style="font-family: \'IBM Plex Mono\', monospace; font-size: 10px; font-weight: 400;">' + w.years + '</span></div>' +
+          '<div class="p-entry-sub">' + w.company + '</div><p class="p-entry-desc">' + w.description + '</p></div>';
+      }).join('') + '</div>';
+
+      html += '<div class="p-section"><div class="p-title">Certifications</div><div style="font-size: 12.5px;">' +
+        (db.certifications?.certifications || []).map(c => '<div style="margin-bottom:5px;"><b>' + c.title + '</b> — ' + c.achieve_date + '</div>').join('') + '</div></div>';
+
+      document.getElementById('cv-preview-frame').innerHTML = html;
     }
-
-    function removeItem(type, idx) {
-      resumeData.resume[type].splice(idx, 1);
-      renderEditor();
+    async function exportPDF() { const f = document.getElementById('cv-preview-frame'); const { jsPDF } = window.jspdf; const canvas = await html2canvas(f, { scale: 2 }); const pdf = new jsPDF(); pdf.addImage(canvas.toDataURL("image/jpeg"), "JPEG", 0, 0, 210, 297); pdf.save("CV.pdf"); }
+    function exportHTML() {
+      const content = document.getElementById('cv-preview-frame').innerHTML;
+      const h = '<!DOCTYPE html><html><head><title>CV</title></head><body>' + content + '</body></html>';
+      const blob = new Blob([h], { type: 'text/html' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'CV.html'; a.click();
     }
-
-    function downloadJSON() {
-      const blob = new Blob([JSON.stringify(resumeData, null, 4)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'resumeData.json';
-      a.click();
-
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
-    }
-
     loadData();
   </script>
 </body>
