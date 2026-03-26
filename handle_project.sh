@@ -131,7 +131,7 @@ cmd_stop() {
 cmd_deploy() {
     log_info "=== AVVIO DEPLOY SU CLOUDFLARE PAGES ==="
     if command -v npx &> /dev/null; then
-        npx wrangler pages deploy .
+        npx wrangler pages deploy web --branch main
     else
         log_error "npx (Node.js) non trovato. Impossibile eseguire wrangler deploy."
         exit 1
