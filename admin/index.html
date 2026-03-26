@@ -233,7 +233,7 @@
     let db = null;
     async function loadData() {
       try {
-        const res = await fetch('../data/resumeData.json');
+        const res = await fetch('../data/resumeData.json?t=' + new Date().getTime());
         db = await res.json();
         document.getElementById('status-dot').style.background = '#00ff66';
         renderEditor(); updatePreview();
@@ -262,6 +262,7 @@
       // Identity
       let html = '<details id="det-id" class="section"><summary class="section-title">Identity & Contacts</summary><div style="padding-top:10px;">' +
         '<div class="field"><label>Name</label><input type="text" value="' + (db.main.name || '') + '" oninput="db.main.name=this.value;updatePreview();"></div>' +
+        '<div class="field"><label>Surname</label><input type="text" value="' + (db.main.surname || '') + '" oninput="db.main.surname=this.value;updatePreview();"></div>' +
         '<div class="field"><label>Email</label><input type="text" value="' + (db.main.cv.cvMail || '') + '" oninput="db.main.cv.cvMail=this.value;updatePreview();"></div>' +
         '<div class="field"><label>Birth</label><input type="text" value="' + (db.main.cv.cvDatePlaceOfBirth || '') + '" oninput="db.main.cv.cvDatePlaceOfBirth=this.value;updatePreview();"></div>' +
         '<div class="field"><label>Website</label><input type="text" value="' + (db.main.website || '') + '" oninput="db.main.website=this.value;updatePreview();"></div>' +
@@ -354,7 +355,9 @@
     function removeEntry(i) { if (confirm("Remove?")) { db.resume.work.splice(i, 1); renderEditor(); updatePreview(); } }
     function updatePreview() {
       if (!db) return; const data = db.main; const r = db.resume;
-      const nameParts = data.name.split(' '); const last = nameParts.pop(); const first = nameParts.join(' ');
+      let first = data.name || '';
+      let last = data.surname || '';
+      if (!last && first.includes(' ')) { const parts = first.split(' '); last = parts.pop(); first = parts.join(' '); }
 
       let html = '<style>' +
         '.p-header { border-bottom: 3px solid #0d0d0d; padding-bottom: 20px; margin-bottom: 24px; }' +

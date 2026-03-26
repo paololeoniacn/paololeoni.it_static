@@ -445,6 +445,46 @@
             }
         }
 
+        .wave {
+            display: inline-block;
+            animation: wave-animation 2.5s infinite;
+            transform-origin: 70% 70%;
+        }
+
+        @keyframes wave-animation {
+            0% {
+                transform: rotate(0.0deg)
+            }
+
+            10% {
+                transform: rotate(14.0deg)
+            }
+
+            20% {
+                transform: rotate(-8.0deg)
+            }
+
+            30% {
+                transform: rotate(14.0deg)
+            }
+
+            40% {
+                transform: rotate(-4.0deg)
+            }
+
+            50% {
+                transform: rotate(10.0deg)
+            }
+
+            60% {
+                transform: rotate(0.0deg)
+            }
+
+            100% {
+                transform: rotate(0.0deg)
+            }
+        }
+
         @media (max-width: 900px) {
 
             .about-flex,
@@ -475,7 +515,7 @@
 
     <header id="home" class="hero">
         <div class="hero-tag">AI Orchestrator & Holistic Architect</div>
-        <h1 id="name-header">PAOLO LEONI</h1>
+        <h1 id="name-header">Hi all, I'm <span class="wave">👋</span></h1>
         <p class="hero-desc" id="hero-desc" style="font-size: 1.3rem; margin-top: -10px; color: var(--text);">
             Designing scalable architectures. Orchestrating intelligence.
         </p>
@@ -665,7 +705,7 @@
 
         async function init() {
             try {
-                const res = await fetch('../data/resumeData.json');
+                const res = await fetch('../data/resumeData.json?t=' + new Date().getTime());
                 const data = await res.json();
                 render(data);
                 fetchGitHub();
@@ -693,6 +733,9 @@
                     const el = document.getElementById(id);
                     if (el) el.innerHTML = html;
                 };
+
+                const firstName = m.name ? m.name.split(' ')[0] : 'Paolo';
+                inject('name-header', `Hi all, I'm ${firstName} <span class="wave">👋</span>`);
 
                 inject('hero-desc', m.occupation);
                 inject('hero-social', m.social.map(s => `
