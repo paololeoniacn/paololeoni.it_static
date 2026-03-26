@@ -99,8 +99,8 @@ cmd_status() {
 
 cmd_run() {
     log_info "=== AVVIO SERVER LOCALE (Porta 8081) ==="
-    log_info "Area Web (Root): http://localhost:8081/web/"
-    log_info "Area Admin:      http://localhost:8081/web/admin/"
+    log_info "Area Web (Root): http://localhost:8081/"
+    log_info "Area Admin:      http://localhost:8081/admin/"
     log_warn "Premi Ctrl+C per fermare il server (o usa stop in un altro terminale)."
     python3 server.py &
     echo $! > .server.pid
@@ -109,22 +109,28 @@ cmd_run() {
 
 cmd_stop() {
     log_info "=== ARRESTO SERVER LOCALE ==="
+    
+    # 1. Tentativo tramite file PID
     if [ -f .server.pid ]; then
         local pid=$(cat .server.pid)
         if ps -p $pid > /dev/null 2>&1; then
-            kill $pid && log_success "Server (PID $pid) fermato."
-        else
-            log_warn "Il server (PID $pid) non era già in esecuzione."
+            kill -9 $pid > /dev/null 2>&1 && log_success "Server da file PID ($pid) fermato."
         fi
         rm -f .server.pid
-    else
-        # Fallback: cerca i processi python3 server.py
-        local pids=$(ps aux | grep "[s]erver.py" | awk '{print $2}')
-        if [ -n "$pids" ]; then
-            kill $pids && log_success "Processi server terminati."
-        else
-            log_warn "Nessun server attivo trovato."
-        fi
+    fi
+
+    # 2. Kill chirurgico sulla porta 8081 (Metodo Knight)
+    local port_pid=$(lsof -t -i:8081 2>/dev/null)
+    if [ -n "$port_pid" ]; then
+        kill -9 $port_pid > /dev/null 2>&1
+        log_success "Processo sulla porta 8081 (PID $port_pid) terminato."
+    fi
+
+    # 3. Fallback per nome processo residuo
+    local pids=$(ps aux | grep "[s]erver.py" | awk '{print $2}')
+    if [ -n "$pids" ]; then
+        kill -9 $pids > /dev/null 2>&1
+        log_success "Processi residui terminati."
     fi
 }
 

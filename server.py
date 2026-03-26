@@ -3,10 +3,17 @@ import json
 import os
 
 PORT = 8081
-JSON_FILE = os.path.join(os.getcwd(), 'web', 'data', 'resumeData.json')
+# Paths are absolute for local persistence
+ROOT_DIR = os.path.join(os.getcwd(), 'web')
+JSON_FILE = os.path.join(ROOT_DIR, 'data', 'resumeData.json')
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        # Serve the 'web' directory as the root
+        super().__init__(*args, directory=ROOT_DIR, **kwargs)
+
     def do_POST(self):
+        # In this context, paths are relative to the 'web/' root
         if self.path == '/api/save':
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
@@ -31,6 +38,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     print(f"Starting Orchestrator Server on port {PORT}...")
+    print(f"Serving directory: {ROOT_DIR}")
     server = http.server.HTTPServer(('', PORT), Handler)
     server.allow_reuse_address = True
     server.serve_forever()
