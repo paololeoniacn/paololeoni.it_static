@@ -42,10 +42,15 @@ __pycache__/
 .agents/drafts/
 # docs/V1 è incluso perché è parte del protocollo
 
-# Cloudflare Wrangler files
+# Backup (Rule 8)
+*.zip
+
+# Cloudflare Wrangler & Node logs
 .wrangler/
+node_modules/
 wrangler-debug.log
 .dev.vars
+npm-debug.log*
 
 old/*
 
