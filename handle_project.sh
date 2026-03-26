@@ -98,6 +98,7 @@ cmd_status() {
 }
 
 cmd_run() {
+    cmd_stop
     log_info "=== AVVIO SERVER LOCALE (Porta 8081) ==="
     log_info "Area Web (Root): http://localhost:8081/"
     log_info "Area Admin:      http://localhost:8081/admin/"

@@ -235,6 +235,12 @@
         ],
         "work": [
             {
+                "title": "AI/ML Engineer — Incident Management Automation (ENEL)",
+                "company": "Accenture — ENEL",
+                "years": "2024 – Ongoing",
+                "description": "• Designed an AI framework for autonomous incident detection and triage.\n• Integrated AI models with InfluxDB and Grafana to reduce MTTR and trigger automated runbooks."
+            },
+            {
                 "title": "Cloud Solutions Architect — Application Stack Modernization (MiTur)",
                 "company": "Accenture — Ministero del Turismo",
                 "years": "Apr 2025 – Ongoing",
@@ -257,12 +263,6 @@
                 "company": "Accenture",
                 "years": "2024 – Ongoing",
                 "description": "• Developed internal AI products using quantized language models (GGUF) via llama.cpp for on-premise inference.\n• Implemented RAG pipelines and modular pipelines integrating vector stores (FAISS, ChromaDB)."
-            },
-            {
-                "title": "AI/ML Engineer — Incident Management Automation (ENEL)",
-                "company": "Accenture — ENEL",
-                "years": "2024 – Ongoing",
-                "description": "• Designed an AI framework for autonomous incident detection and triage.\n• Integrated AI models with InfluxDB and Grafana to reduce MTTR and trigger automated runbooks."
             },
             {
                 "title": "Cloud Solutions Architect — Data Orchestration for EUDR Compliance",

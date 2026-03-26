@@ -409,15 +409,85 @@
 
       document.getElementById('cv-preview-frame').innerHTML = html;
     }
-    async function exportPDF() { const f = document.getElementById('cv-preview-frame'); const { jsPDF } = window.jspdf; const canvas = await html2canvas(f, { scale: 2 }); const pdf = new jsPDF(); pdf.addImage(canvas.toDataURL("image/jpeg"), "JPEG", 0, 0, 210, 297); pdf.save("CV.pdf"); }
+    function getFileName(ext) {
+      const data = db.main;
+      let first = (data.name || 'CV').split(' ')[0].trim();
+      let last = (data.surname || '').trim();
+      if (!last && data.name.includes(' ')) {
+        const parts = data.name.split(' ');
+        last = parts.pop();
+        first = parts[0];
+      }
+      const now = new Date();
+      const dateStr = now.getFullYear() + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0');
+      const timeStr = String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
+      return `${first}_${last}_${dateStr}_${timeStr}.${ext}`.replace(/__+/g, '_');
+    }
+
+    async function exportPDF() {
+      const f = document.getElementById('cv-preview-frame');
+      const { jsPDF } = window.jspdf;
+      const canvas = await html2canvas(f, { scale: 2, useCORS: true });
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      const finalPdf = new jsPDF('p', 'mm', [pdfWidth, pdfHeight]);
+      finalPdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      finalPdf.save(getFileName('pdf'));
+    }
+
     function exportHTML() {
       const content = document.getElementById('cv-preview-frame').innerHTML;
-      const h = '<!DOCTYPE html><html><head><title>CV</title></head><body>' + content + '</body></html>';
-      const blob = new Blob([h], { type: 'text/html' });
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'CV.html'; a.click();
+      const data = db.main;
+      const styles = `
+        body { background: #e0e0e0; margin: 0; padding: 50px 20px; font-family: 'Inter', sans-serif; display: flex; justify-content: center; }
+        .paper { background: #fdfaf5; width: 850px; padding: 60px 80px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); border-radius: 4px; position: relative; }
+        .p-header { border-bottom: 3px solid #0d0d0d; padding-bottom: 20px; margin-bottom: 24px; }
+        .p-name { font-size: 38px; font-weight: 700; color: #0d0d0d; letter-spacing: -0.02em; margin: 0; }
+        .p-name span { color: #b5401a; }
+        .p-contact-row { display: flex; flex-wrap: wrap; gap: 6px 15px; margin-top: 10px; font-family: "IBM Plex Mono", monospace; font-size: 11px; color: #666; }
+        .p-contact-item { background: #ece7dc; padding: 3px 8px; border-radius: 2px; }
+        .p-contact-row a { color: #b5401a; text-decoration: none; font-weight: 500; }
+        .p-section { margin-bottom: 25px; }
+        .p-title { font-family: "IBM Plex Mono", monospace; font-size: 10px; color: #b5401a; text-transform: uppercase; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-bottom: 12px; letter-spacing: 0.1em; }
+        .p-statement { font-size: 13.5px; line-height: 1.7; font-style: italic; color: #2a2420; }
+        .p-entry { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed #ccc; }
+        .p-entry:last-child { border-bottom: none; }
+        .p-entry-head { display: flex; justify-content: space-between; font-weight: 600; font-size: 14px; }
+        .p-entry-sub { font-size: 12px; color: #b5401a; font-weight: 600; }
+        .p-entry-desc { font-size: 12.5px; line-height: 1.6; margin-top: 6px; color: #2a2420; }
+        .p-tag-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+        .p-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; padding: 3px 9px; border: 1px solid #ccc; color: #666; background: #fdfaf5; }
+        @media print {
+          body { background: white; padding: 0; }
+          .paper { box-shadow: none; width: 100%; padding: 0; }
+        }
+      `;
+      const htmlOutput = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - ${data.name} ${data.surname || ''}</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>${styles}</style>
+</head>
+<body>
+  <div class="paper">
+    ${content}
+  </div>
+</body>
+</html>`;
+
+      const blob = new Blob([htmlOutput], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = getFileName('html');
+      a.click();
     }
     loadData();
   </script>
 </body>
-
-</html>
