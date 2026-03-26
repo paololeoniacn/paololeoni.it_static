@@ -238,73 +238,73 @@
                 "title": "Cloud Solutions Architect — Application Stack Modernization (MiTur)",
                 "company": "Accenture — Ministero del Turismo",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Leading the porting of an existing enterprise application stack from TIBCO BusinessWorks 6 (BW6) to Java Spring Boot microservices. Designed and implemented cloud-native architecture on AWS (S3, API Gateway, EKS). Leveraged AI-assisted code analysis tools for reverse-engineering legacy patterns."
+                "description": "• Leading the porting of an existing enterprise application stack from TIBCO BusinessWorks 6 (BW6) to Java Spring Boot microservices.\n• Designed and implemented cloud-native architecture on AWS (S3, API Gateway, EKS).\n• Leveraged AI-assisted code analysis tools for reverse-engineering legacy patterns."
             },
             {
                 "title": "Cloud Solutions Architect — Mobile & Backend Federation (FiberCop)",
                 "company": "Accenture — FiberCop",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Architected a secure connectivity layer between mobile applications and heterogeneous backend systems using AWS API Gateway and Cognito. Implemented OAuth2/JWT-based token brokering for seamless cross-platform authentication without backend modifications."
+                "description": "• Architected a secure connectivity layer between mobile applications and heterogeneous backend systems using AWS API Gateway and Cognito.\n• Implemented OAuth2/JWT-based token brokering for seamless cross-platform authentication without backend modifications."
             },
             {
                 "title": "Cloud Solutions Architect — Cloud Architecture Design & Migration (Dottor Max)",
                 "company": "Accenture — Dottor Max",
                 "years": "Apr 2025 – Ongoing",
-                "description": "Designed end-to-end cloud architecture (RDS, S3, Lambda, ECS) for a pharmacy management platform. Produced detailed blueprints and defined a phased migration strategy from on-premises to AWS."
+                "description": "• Designed end-to-end cloud architecture (RDS, S3, Lambda, ECS) for a pharmacy management platform.\n• Produced detailed blueprints and defined a phased migration strategy from on-premises to AWS."
             },
             {
                 "title": "AI/ML Engineer — Local LLM Products with GGUF & Llama.cpp",
                 "company": "Accenture",
                 "years": "2024 – Ongoing",
-                "description": "Developed internal AI products using quantized language models (GGUF) via llama.cpp for on-premise inference. Implemented RAG pipelines and modular pipelines integrating vector stores (FAISS, ChromaDB)."
+                "description": "• Developed internal AI products using quantized language models (GGUF) via llama.cpp for on-premise inference.\n• Implemented RAG pipelines and modular pipelines integrating vector stores (FAISS, ChromaDB)."
             },
             {
                 "title": "AI/ML Engineer — Incident Management Automation (ENEL)",
                 "company": "Accenture — ENEL",
                 "years": "2024 – Ongoing",
-                "description": "Designed an AI framework for autonomous incident detection and triage. Integrated AI models with InfluxDB and Grafana to reduce MTTR and trigger automated runbooks."
+                "description": "• Designed an AI framework for autonomous incident detection and triage.\n• Integrated AI models with InfluxDB and Grafana to reduce MTTR and trigger automated runbooks."
             },
             {
                 "title": "Cloud Solutions Architect — Data Orchestration for EUDR Compliance",
                 "company": "Accenture",
                 "years": "Jan 2025 – Ongoing",
-                "description": "Designed a cloud-native data orchestration framework integrated with TRACEMARK for raw material traceability. Established secure ERP integrations (SAP, Postgres) with AWS S3."
+                "description": "• Designed a cloud-native data orchestration framework integrated with TRACEMARK for raw material traceability.\n• Established secure ERP integrations (SAP, Postgres) with AWS S3."
             },
             {
                 "title": "AI/ML Engineer — LLM and Generative AI",
                 "company": "Accenture",
                 "years": "Mar 2024 – Present",
-                "description": "Research and implementation of LLMs using TensorFlow, PyTorch, and GGUF quantization techniques. Developed RAG (Retrieval-Augmented Generation) solutions to enhance accuracy and context-awareness."
+                "description": "• Research and implementation of LLMs using TensorFlow, PyTorch, and GGUF quantization techniques.\n• Developed RAG (Retrieval-Augmented Generation) solutions to enhance accuracy and context-awareness."
             },
             {
                 "title": "Software Architect and Team Lead",
                 "company": "Accenture",
                 "years": "Feb 2024 – Ongoing",
-                "description": "Supervised development teams for EUDR compliance and internal GenAI projects. Designed web applications using React and cloud-native solutions with AWS (S3, Cognito, API Gateway)."
+                "description": "• Lead and manage development teams for critical projects, including the EUDR Regulation Compliance project, ensuring timely and quality delivery.\n• Deploy custom blockchain networks with Hyperledger Besu, develop Solidity smart contracts for NFT management, and create backend services in Node.js and Quarkus for blockchain and data interactions.\n• Develop user interfaces with React and Next.js, integrating seamlessly with enterprise systems (SAP, TIBCO) and AWS for secure and efficient data handling.\n• Responsible for DevOps practices, using Docker, Docker Compose, and Kubernetes for container management and orchestration, and managing CI/CD pipelines with Bamboo.\n• Oversee AWS environment configurations (IAM, EC2, EKS) to optimize cloud-native applications, while applying cryptographic techniques for security and data integrity.\n• Collaborate with business departments and clients to define requirements, design solutions, and implement Agile methodologies as a *certified* Scrum Developer.\n• Document processes, release notes, and technical guides in Confluence for knowledge sharing and continuity."
             },
             {
                 "title": "DevOps & Observability Specialist — Active Monitoring with InfluxDB",
                 "company": "Accenture",
                 "years": "Mar 2024 – Apr 2024",
-                "description": "Architected an active monitoring system using InfluxDB and Python (pandas, influxdb_client) for metrics visualization. Containerized and orchestrated microservices with Docker and Kubernetes on AWS."
+                "description": "• Architected an active monitoring system using InfluxDB and Python (pandas, influxdb_client) for metrics visualization.\n• Containerized and orchestrated microservices with Docker and Kubernetes on AWS."
             },
             {
                 "title": "Blockchain Engineer & DevOps Specialist",
                 "company": "Accenture",
                 "years": "Mar 2023 – Ongoing",
-                "description": "Deployed custom blockchain networks using Hyperledger Besu. Wrote Solidity smart contracts for NFT management and developed backend services in Node.js and Java (Quarkus)."
+                "description": "• Deployed custom blockchain networks using Hyperledger Besu.\n• Wrote Solidity smart contracts for NFT management and developed backend services in Node.js and Java (Quarkus)."
             },
             {
                 "title": "Application Development Senior Analyst",
                 "company": "Accenture — ENEL",
                 "years": "Jan 2020 – Feb 2023",
-                "description": "Developed web portals and energy market platforms for ENEL Italy and North America. Full-stack development with React and Java Spring Boot (microservices) on AWS. Acted as Scrum Master."
+                "description": "• Developed web portals and energy market platforms for ENEL Italy and North America.\n• Full-stack development with React and Java Spring Boot (microservices) on AWS.\n• Acted as Scrum Master."
             },
             {
                 "title": "Application Development Analyst",
                 "company": "Accenture — ENEL / ENEL Green Power",
                 "years": "Apr 2017 – Jan 2020",
-                "description": "Analysis and development of energy market platforms. Led the architectural migration from on-premises to AWS EC2 using SAS and J2EE technology stacks."
+                "description": "• Analysis and development of energy market platforms.\n• Led the architectural migration from on-premises to AWS EC2 using SAS and J2EE technology stacks."
             }
         ],
         "skills": [

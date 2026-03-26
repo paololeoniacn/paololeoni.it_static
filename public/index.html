@@ -181,6 +181,7 @@
 
         .section-header {
             margin-bottom: 60px;
+            scroll-margin-top: 100px;
         }
 
         .section-header h2 {
@@ -240,6 +241,10 @@
             border-radius: 16px;
             transition: var(--transition);
             margin-bottom: 20px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .resume-card:hover {
@@ -269,6 +274,7 @@
         .resume-card p {
             font-size: 0.9rem;
             color: var(--text-dim);
+            overflow: hidden;
         }
 
         /* --- SKILLS --- */
@@ -280,6 +286,7 @@
 
         .resume-card.border-accent {
             border-left: 4px solid var(--accent);
+            height: 200px;
         }
 
         .cert-grid {
@@ -507,7 +514,9 @@
         <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
-            <a href="#resume">Resume</a>
+            <a href="#resume">Experience</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#education">Education</a>
             <a href="#portfolio">Portfolio</a>
             <a href="/admin" class="admin-link">Admin Backend</a>
         </div>
@@ -554,7 +563,7 @@
             <!-- Dynamic Work -->
         </div>
 
-        <div class="section-header" style="margin-top: 80px;">
+        <div id="certifications" class="section-header" style="margin-top: 80px;">
             <h2>Certifications</h2>
             <div class="line"></div>
         </div>
@@ -562,7 +571,7 @@
             <!-- Dynamic Certs -->
         </div>
 
-        <div class="section-header" style="margin-top: 80px;">
+        <div id="education" class="section-header" style="margin-top: 80px;">
             <h2>Education</h2>
             <div class="line"></div>
         </div>
@@ -745,23 +754,27 @@
                 inject('bio-text', m.bio);
 
                 if (r.work) {
-                    inject('work-grid', r.work.slice().reverse().map(w => `
+                    inject('work-grid', r.work.map(w => `
                         <div class="resume-card">
                             <span class="date">${w.years}</span>
                             <span class="company">${w.company}</span>
                             <h3>${w.title}</h3>
-                            <p>${w.description.substring(0, 180)}...</p>
+                            <p>${w.description.replace(/\\n/g, '<br/>')}</p>
+                            <div style="flex-grow: 1;"></div>
+                            <div style="text-align: right; color: var(--accent); font-weight: 800; font-size: 1.5rem; line-height: 0.5;">...</div>
                         </div>
                     `).join(''));
                 }
 
                 if (r.education) {
-                    inject('education-grid', r.education.slice().reverse().map(e => `
+                    inject('education-grid', r.education.map(e => `
                         <div class="resume-card border-accent">
                             <span class="date">${e.graduated}</span>
                             <span class="company">${e.school}</span>
                             <h3>${e.degree}</h3>
-                            <p>${e.description}</p>
+                            <p>${e.description ? e.description.replace(/\n/g, '<br/>') : ''}</p>
+                            <div style="flex-grow: 1;"></div>
+                            <div style="text-align: right; color: var(--accent); font-weight: 800; font-size: 1.5rem; line-height: 0.5;">...</div>
                         </div>
                     `).join(''));
                 }

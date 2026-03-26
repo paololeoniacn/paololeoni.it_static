@@ -395,7 +395,7 @@
 
       html += '<div class="p-section"><div class="p-title">Experience</div>' + (r.work || []).map(w => {
         return '<div class="p-entry"><div class="p-entry-head"><span>' + w.title + '</span><span style="font-family: \'IBM Plex Mono\', monospace; font-size: 10px; font-weight: 400;">' + w.years + '</span></div>' +
-          '<div class="p-entry-sub">' + w.company + '</div><p class="p-entry-desc">' + w.description + '</p></div>';
+          '<div class="p-entry-sub">' + w.company + '</div><p class="p-entry-desc">' + w.description.replace(/\n/g, '<br/>') + '</p></div>';
       }).join('') + '</div>';
 
       html += '<div class="p-section"><div class="p-title">Education</div>' + (r.education || []).map(e => {
