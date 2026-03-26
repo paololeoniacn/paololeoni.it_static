@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 APP_NAME="CV-Orchestrator"
 VENV_DIR=".venv"
 REQUIREMENTS="requirements.txt"
-DATA_SOURCE="data/resumeData.json"
+DATA_SOURCE="web/data/resumeData.json"
 
 # --- Colori ---
 RED='\033[0;31m'
@@ -82,9 +82,9 @@ cmd_status() {
 
     # Project Folders
     echo -ne "Area Admin:          "
-    [ -d "admin" ] && echo -e "${GREEN}OK${NC}" || echo -e "${RED}MANCANTE${NC}"
-    echo -ne "Area Public:         "
-    [ -d "public" ] && echo -e "${GREEN}OK${NC}" || echo -e "${RED}MANCANTE${NC}"
+    [ -d "web/admin" ] && echo -e "${GREEN}OK${NC}" || echo -e "${RED}MANCANTE${NC}"
+    echo -ne "Area Web:            "
+    [ -d "web" ] && echo -e "${GREEN}OK${NC}" || echo -e "${RED}MANCANTE${NC}"
     
     # Cloudflare Setup
     echo -ne "Cloudflare Pages:    "
@@ -99,8 +99,8 @@ cmd_status() {
 
 cmd_run() {
     log_info "=== AVVIO SERVER LOCALE (Porta 8081) ==="
-    log_info "Area Public: http://localhost:8081/public/"
-    log_info "Area Admin:  http://localhost:8081/admin/"
+    log_info "Area Web (Root): http://localhost:8081/web/"
+    log_info "Area Admin:      http://localhost:8081/web/admin/"
     log_warn "Premi Ctrl+C per fermare il server (o usa stop in un altro terminale)."
     python3 server.py &
     echo $! > .server.pid
@@ -143,7 +143,7 @@ cmd_backup() {
     local timestamp=$(date +"%Y%m%d_%H%M")
     local backup_name="CV_Orchestrator_Backup_${timestamp}.zip"
     
-    zip -r "$backup_name" data/ docs/ admin/index.html public/index.html -x "*.DS_Store"
+    zip -r "$backup_name" web/ docs/ -x "*.DS_Store"
     log_success "Backup creato: $backup_name"
 }
 

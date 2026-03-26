@@ -3,7 +3,7 @@ import json
 import os
 
 PORT = 8081
-JSON_FILE = os.path.join(os.getcwd(), 'data', 'resumeData.json')
+JSON_FILE = os.path.join(os.getcwd(), 'web', 'data', 'resumeData.json')
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
