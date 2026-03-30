@@ -218,6 +218,11 @@
         "skillmessage-old": "A passionate Full Stack Software Developer having an experience with building Web and Mobile applications with JavaScript / Reactjs / Nodejs / React Native and some other cool libraries and frameworks",
         "education": [
             {
+                "school": "Anthropic Academy",
+                "degree": "AI Developer & Claude Specialist",
+                "graduated": "Ongoing"
+            },
+            {
                 "school": "Blockchain Management School",
                 "degree": "Master Blockchain Technology & Management",
                 "graduated": "2021"
@@ -672,6 +677,12 @@
                 "logo": "/images/Certifications/Professional-Scrum-Master-1-Certification.png"
             },
             {
+                "title": "Claude Code in Action — Anthropic Academy",
+                "achieve_date": "Mar 2026",
+                "logo": "/images/Certifications/ClaudeCodeInAction.jpg",
+                "verificationLink": "https://verify.skilljar.com/c/a8jqxveos9tg"
+            },
+            {
                 "title": "AWS Certified Solutions Architect Associate",
                 "achieve_date": "Sep 2022",
                 "logo": "/images/Certifications/AWS-SolArchitect-Associate-2022.png",
@@ -726,6 +737,22 @@
             }
         ]
     },
+    "learning": [
+        {
+            "academy": "Anthropic Academy",
+            "url": "https://verify.skilljar.com/",
+            "status": "Ongoing",
+            "modules": [
+                {
+                    "title": "Claude Code in Action",
+                    "date": "March 30, 2026",
+                    "certificate_id": "a8jqxveos9tg",
+                    "verificationLink": "https://verify.skilljar.com/c/a8jqxveos9tg",
+                    "logo": "/images/Certifications/ClaudeCodeInAction.jpg"
+                }
+            ]
+        }
+    ],
     "Principal Skills": {
         "": "Competenze funzionali:, Buona conoscenza dei processi di bidding,Conoscenza del mercato elettrico Italiano,Conoscenza del processo di settlement, Competenze tecniche:,Full Stack,CD/CI Management,Docker (container env),Technology Architect ,Configuration & Release Management   ,Suite Atlassian (Jira, Confluence, Bamboo),MySQL   ,Oracle SQL Developer   ,Oracle Database   ,J2EE,Spring MVC (Model View Controller),Spring Boot   ,Restful API,JavaScript ,TypeScript Programming Language   ,Angular,React,HTML (Hypertext Markup Language)     ,Cascading Style Sheets (CSS),Python,Blockchain, Competenze trasversali generali:,capacità di lavorare in team ed in autonomia; ,capacità di comunicazione e interazione con untenti finali;,capaictà di organizzazione e gestione del tempo nel rispetto delle tempistiche progettuali e con orientamento all'obiettivo,conoscenza delle motodologie di delivery sia in modalità Waterfall che Agile Scrum,conoscenza delle architetture di base,rtificazioni:,Certificazione Agile Scrum Developer (15.07.2019),Certificazione AWS Cloud (28.04.2021),Certificazione DevOps (30.11.2021)"
     }

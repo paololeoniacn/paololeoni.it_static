@@ -184,6 +184,11 @@ cmd_help() {
 }
 
 # --- Main ---
+# Attivazione automatica venv se esiste (Regola 8)
+if [ -d "$VENV_DIR" ]; then
+    source "$VENV_DIR/bin/activate"
+fi
+
 case "$1" in
     status)         cmd_status ;;
     install)        check_python && ensure_venv ;;
