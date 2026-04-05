@@ -145,6 +145,45 @@ cmd_deploy() {
     fi
 }
 
+cmd_run_remote() {
+    cmd_stop
+    log_info "=== AVVIO SERVER LOCALE SINCRONIZZATO (Remote KV) ==="
+    log_info "Questo comando collega il tuo editor locale al database Cloudflare reale."
+    log_warn "Assicurati di aver configurato il KV ID in wrangler.toml."
+    npx wrangler pages dev web --remote --kv RESUME_DATA
+}
+
+cmd_kv_push() {
+    log_info "=== PUSH: LOCALE -> CLOUDFLARE KV ==="
+    if [ ! -f "$DATA_SOURCE" ]; then
+        log_error "File $DATA_SOURCE non trovato!"
+        return 1
+    fi
+    
+    local kv_id=$(grep "id =" wrangler.toml | head -n 1 | cut -d '"' -f 2)
+    if [[ "$kv_id" == "PASTE_YOUR_KV_ID_HERE" ]]; then
+        log_error "Devi prima configurare il tuo KV ID in wrangler.toml!"
+        return 1
+    fi
+
+    log_info "Caricamento in corso su KV ($kv_id)..."
+    npx wrangler kv:key put --namespace-id "$kv_id" "resume_json" --path "$DATA_SOURCE"
+    log_success "Dati sincronizzati correttamente su Cloudflare."
+}
+
+cmd_kv_pull() {
+    log_info "=== PULL: CLOUDFLARE KV -> LOCALE ==="
+    local kv_id=$(grep "id =" wrangler.toml | head -n 1 | cut -d '"' -f 2)
+    if [[ "$kv_id" == "PASTE_YOUR_KV_ID_HERE" ]]; then
+        log_error "Devi prima configurare il tuo KV ID in wrangler.toml!"
+        return 1
+    fi
+
+    log_info "Scaricamento in corso da KV ($kv_id)..."
+    npx wrangler kv:key get --namespace-id "$kv_id" "resume_json" > "$DATA_SOURCE"
+    log_success "Database locale aggiornato con l'ultima versione dal Cloud."
+}
+
 cmd_backup() {
     log_info "=== CREAZIONE BACKUP DATI E DOCS ==="
     local timestamp=$(date +"%Y%m%d_%H%M")
@@ -168,19 +207,22 @@ cmd_help() {
     echo ""
     echo "Uso: $0 <comando>"
     echo ""
-    echo -e "${YELLOW}Gestione:${NC}"
+    echo -e "${YELLOW}Gestione Locale:${NC}"
     echo "  status         Mostra lo stato del progetto e dei dati"
     echo "  install        Inizializza l'ambiente virtuale e le dipendenze"
-    echo "  run            Avvia il server locale per visualizzare il sito"
+    echo "  run            Avvia il server locale classico (file JSON)"
     echo "  stop           Arresta il server locale"
     echo "  backup         Crea un archivio ZIP di dati e configurazioni"
     echo "  clean          Rimuove l'ambiente virtuale e i file temporanei"
     echo ""
-    echo -e "${YELLOW}Cloud:${NC}"
-    echo "  deploy         Esegue il deploy su Cloudflare Pages (richiede wrangler)"
+    echo -e "${YELLOW}Cloud & Database (KV):${NC}"
+    echo "  run-remote     Avvia l'editor locale collegato al DB Cloud reale"
+    echo "  kv-push        Inizializza/Carica i dati locali nel database online"
+    echo "  kv-pull        Scarica i dati dal database online nel file locale"
+    echo "  deploy         Esegue il deploy statico su Cloudflare Pages"
     echo ""
     echo -e "${BLUE}Supporto:${NC}"
-    echo "  Sempre documentare in docs/V1 prima di modifiche strutturali."
+    echo "  Sempre documentare in docs/prima di modifiche strutturali."
 }
 
 # --- Main ---
@@ -193,6 +235,9 @@ case "$1" in
     status)         cmd_status ;;
     install)        check_python && ensure_venv ;;
     run)            cmd_run ;;
+    run-remote)     cmd_run_remote ;;
+    kv-push)        cmd_kv_push ;;
+    kv-pull)        cmd_kv_pull ;;
     stop)           cmd_stop ;;
     deploy)         cmd_deploy ;;
     backup)         cmd_backup ;;

@@ -12,6 +12,22 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         # Serve the 'web' directory as the root
         super().__init__(*args, directory=ROOT_DIR, **kwargs)
 
+    def do_GET(self):
+        if self.path == '/api/save':
+            try:
+                with open(JSON_FILE, 'r', encoding='utf-8') as f:
+                    data = f.read()
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(data.encode())
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
+                self.wfile.write(str(e).encode())
+        else:
+            return super().do_GET()
+
     def do_POST(self):
         # In this context, paths are relative to the 'web/' root
         if self.path == '/api/save':

@@ -234,21 +234,34 @@
     let db = null;
     async function loadData() {
       try {
-        const res = await fetch('../data/resumeData.json?t=' + new Date().getTime());
+        // Try to load from dynamic API first (Cloudflare KV or Local Server)
+        let res = await fetch('/api/save?t=' + new Date().getTime());
+        if (!res.ok) {
+           // Fallback to static JSON if dynamic API is not available/unset
+           res = await fetch('../data/resumeData.json?t=' + new Date().getTime());
+        }
         db = await res.json();
         document.getElementById('status-dot').style.background = '#00ff66';
         renderEditor(); updatePreview();
-      } catch (e) { console.error("Load failed:", e); }
+      } catch (e) { 
+        console.error("Load failed:", e);
+        showToast("Error loading data. Check console.");
+      }
     }
     async function saveData() {
       try {
         const res = await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(db) });
-        if (res.ok) showToast("Saved to JSON!");
+        if (res.ok) {
+          showToast("Saved to JSON!");
+          return;
+        }
+        throw new Error(`Server returned ${res.status}`);
       } catch (e) {
+        console.warn("Save failed, falling back to download:", e);
         const blob = new Blob([JSON.stringify(db, null, 4)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a'); a.href = url; a.download = 'resumeData.json'; a.click();
-        showToast("Server error. Downloaded local copy.");
+        showToast("Online: Changes downloaded (JSON). Update project locally.");
       }
     }
     function showToast(m) { const t = document.getElementById('toast'); t.textContent = m; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }

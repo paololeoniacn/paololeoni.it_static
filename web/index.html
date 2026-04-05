@@ -715,11 +715,22 @@
 
         async function init() {
             try {
-                const res = await fetch('data/resumeData.json?t=' + new Date().getTime());
+                let res = await fetch('/api/save?t=' + new Date().getTime());
+                if (!res.ok) {
+                    res = await fetch('data/resumeData.json?t=' + new Date().getTime());
+                }
                 const data = await res.json();
                 render(data);
                 fetchGitHub();
-            } catch (e) { console.error("Init Error:", e); }
+            } catch (e) {
+                console.error("Init Error:", e);
+                // Last ditch effort
+                try {
+                   const res = await fetch('data/resumeData.json?t=' + new Date().getTime());
+                   const data = await res.json();
+                   render(data);
+                } catch(e2) { console.error("Total failure:", e2); }
+            }
         }
 
         function render(data) {
