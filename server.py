@@ -25,6 +25,20 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.send_response(500)
                 self.end_headers()
                 self.wfile.write(str(e).encode())
+        elif self.path.startswith('/api/files/'):
+            file_name = self.path.split('/')[-1]
+            local_path = os.path.join(ROOT_DIR, 'files', file_name)
+            if os.path.isfile(local_path):
+                self.send_response(200)
+                if file_name.endswith('.pdf'): self.send_header('Content-type', 'application/pdf')
+                elif file_name.endswith('.png'): self.send_header('Content-type', 'image/png')
+                elif file_name.endswith('.jpg'): self.send_header('Content-type', 'image/jpeg')
+                self.end_headers()
+                with open(local_path, 'rb') as f:
+                    self.wfile.write(f.read())
+            else:
+                self.send_response(404)
+                self.end_headers()
         else:
             return super().do_GET()
 
@@ -44,6 +58,34 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(json.dumps({"status": "success"}).encode())
                 print(f"DEBUG: Saved new data to {JSON_FILE}")
+            except Exception as e:
+                self.send_response(500)
+                self.end_headers()
+                self.wfile.write(str(e).encode())
+        elif self.path == '/api/upload':
+            file_name = self.headers.get('X-File-Name')
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            
+            if not file_name:
+                self.send_response(400)
+                self.end_headers()
+                self.wfile.write(b"Missing X-File-Name")
+                return
+
+            try:
+                local_path = os.path.join(ROOT_DIR, 'files', file_name)
+                # Ensure files directory exists
+                os.makedirs(os.path.dirname(local_path), exist_ok=True)
+                
+                with open(local_path, 'wb') as f:
+                    f.write(post_data)
+                
+                self.send_response(200)
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({"status": "success", "url": f"/api/files/{file_name}"}).encode())
+                print(f"DEBUG: Uploaded file to {local_path}")
             except Exception as e:
                 self.send_response(500)
                 self.end_headers()

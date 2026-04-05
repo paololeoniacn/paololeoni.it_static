@@ -147,41 +147,45 @@ cmd_deploy() {
 
 cmd_run_remote() {
     cmd_stop
-    log_info "=== AVVIO SERVER LOCALE SINCRONIZZATO (Remote KV) ==="
-    log_info "Questo comando collega il tuo editor locale al database Cloudflare reale."
-    log_warn "Assicurati di aver configurato il KV ID in wrangler.toml."
-    npx wrangler pages dev web --remote --kv RESUME_DATA
+    log_info "=== AVVIO SERVER LOCALE (Wrangler Emulation) ==="
+    log_info "Questo comando emula l'ambiente Cloudflare sul tuo PC."
+    npx wrangler pages dev web --r2 ORCHESTRATOR_BUCKET
 }
 
-cmd_kv_push() {
-    log_info "=== PUSH: LOCALE -> CLOUDFLARE KV ==="
-    if [ ! -f "$DATA_SOURCE" ]; then
-        log_error "File $DATA_SOURCE non trovato!"
-        return 1
-    fi
+cmd_r2_push() {
+    log_info "=== PUSH: LOCALE -> CLOUDFLARE R2 ==="
     
-    local kv_id=$(grep "id =" wrangler.toml | head -n 1 | cut -d '"' -f 2)
-    if [[ "$kv_id" == "PASTE_YOUR_KV_ID_HERE" ]]; then
-        log_error "Devi prima configurare il tuo KV ID in wrangler.toml!"
-        return 1
+    # 1. Push JSON
+    if [ -f "$DATA_SOURCE" ]; then
+        log_info "Caricamento database (resumeData.json)..."
+        npx wrangler r2 object put paololeoni-orchestrator/db/resumeData.json --file "$DATA_SOURCE" --remote
     fi
 
-    log_info "Caricamento in corso su KV ($kv_id)..."
-    npx wrangler kv:key put --namespace-id "$kv_id" "resume_json" --path "$DATA_SOURCE"
-    log_success "Dati sincronizzati correttamente su Cloudflare."
+    # 2. Push Files (Certificati, etc)
+    log_info "Sincronizzazione file multimediali (web/files)..."
+    for file in web/files/*; do
+        if [ -f "$file" ]; then
+            local fname=$(basename "$file")
+            log_info "  -> Upload: $fname"
+            npx wrangler r2 object put "paololeoni-orchestrator/files/$fname" --file "$file" --remote
+        fi
+    done
+    
+    log_success "Tutti i dati e i file sono stati sincronizzati su R2."
 }
 
-cmd_kv_pull() {
-    log_info "=== PULL: CLOUDFLARE KV -> LOCALE ==="
-    local kv_id=$(grep "id =" wrangler.toml | head -n 1 | cut -d '"' -f 2)
-    if [[ "$kv_id" == "PASTE_YOUR_KV_ID_HERE" ]]; then
-        log_error "Devi prima configurare il tuo KV ID in wrangler.toml!"
-        return 1
-    fi
-
-    log_info "Scaricamento in corso da KV ($kv_id)..."
-    npx wrangler kv:key get --namespace-id "$kv_id" "resume_json" > "$DATA_SOURCE"
-    log_success "Database locale aggiornato con l'ultima versione dal Cloud."
+cmd_r2_pull() {
+    log_info "=== PULL: CLOUDFLARE R2 -> LOCALE ==="
+    
+    # 1. Pull JSON
+    log_info "Scaricamento database..."
+    npx wrangler r2 object get paololeoni-orchestrator/db/resumeData.json --file "$DATA_SOURCE" --remote
+    
+    # 2. Pull Files 
+    log_info "Sincronizzazione file multimediali (Non automatizzata per il pull via KV/R2 CLI)"
+    log_warn "Usa la dashboard Cloudflare per gestire i file massivamente o scaricali via API."
+    
+    log_success "Database locale aggiornato."
 }
 
 cmd_backup() {
@@ -210,19 +214,19 @@ cmd_help() {
     echo -e "${YELLOW}Gestione Locale:${NC}"
     echo "  status         Mostra lo stato del progetto e dei dati"
     echo "  install        Inizializza l'ambiente virtuale e le dipendenze"
-    echo "  run            Avvia il server locale classico (file JSON)"
+    echo "  run            Avvia il server locale classico (file fissi)"
     echo "  stop           Arresta il server locale"
     echo "  backup         Crea un archivio ZIP di dati e configurazioni"
     echo "  clean          Rimuove l'ambiente virtuale e i file temporanei"
     echo ""
-    echo -e "${YELLOW}Cloud & Database (KV):${NC}"
-    echo "  run-remote     Avvia l'editor locale collegato al DB Cloud reale"
-    echo "  kv-push        Inizializza/Carica i dati locali nel database online"
-    echo "  kv-pull        Scarica i dati dal database online nel file locale"
+    echo -e "${YELLOW}Cloud & Object Storage (R2):${NC}"
+    echo "  run-remote     Avvia l'editor locale collegato ai file R2 reali"
+    echo "  r2-push        Carica JSON e file locali nel Bucket R2"
+    echo "  r2-pull        Scarica il JSON globale sul file locale"
     echo "  deploy         Esegue il deploy statico su Cloudflare Pages"
     echo ""
     echo -e "${BLUE}Supporto:${NC}"
-    echo "  Sempre documentare in docs/prima di modifiche strutturali."
+    echo "  Sempre documentare in docs/ prima di modifiche strutturali."
 }
 
 # --- Main ---
@@ -236,8 +240,8 @@ case "$1" in
     install)        check_python && ensure_venv ;;
     run)            cmd_run ;;
     run-remote)     cmd_run_remote ;;
-    kv-push)        cmd_kv_push ;;
-    kv-pull)        cmd_kv_pull ;;
+    r2-push)        cmd_r2_push ;;
+    r2-pull)        cmd_r2_pull ;;
     stop)           cmd_stop ;;
     deploy)         cmd_deploy ;;
     backup)         cmd_backup ;;

@@ -1,26 +1,27 @@
 export async function onRequestGet(context) {
   const { env } = context;
   
-  // Try to get data from KV first
-  if (env.RESUME_DATA) {
-    const data = await env.RESUME_DATA.get("resume_json");
-    if (data) {
-      return new Response(data, {
+  if (env.ORCHESTRATOR_BUCKET) {
+    const object = await env.ORCHESTRATOR_BUCKET.get("db/resumeData.json");
+    if (object) {
+      return new Response(object.body, {
         headers: { "Content-Type": "application/json" }
       });
     }
   }
 
-  // Fallback: This is tricky from a Function. 
-  // We'll return a 404 so the client knows to use the static file fallback.
-  return new Response("Not found in KV", { status: 404 });
+  // Not found in R2 -> 404 to trigger client-side static file fallback
+  return new Response(JSON.stringify({ error: "DB not found in R2" }), { 
+    status: 404,
+    headers: { "Content-Type": "application/json" }
+  });
 }
 
 export async function onRequestPost(context) {
   const { request, env } = context;
   
-  if (!env.RESUME_DATA) {
-    return new Response(JSON.stringify({ error: "KV Namespace not bound" }), { 
+  if (!env.ORCHESTRATOR_BUCKET) {
+    return new Response(JSON.stringify({ error: "R2 Bucket not bound" }), { 
       status: 500,
       headers: { "Content-Type": "application/json" }
     });
@@ -28,7 +29,9 @@ export async function onRequestPost(context) {
 
   try {
     const newData = await request.json();
-    await env.RESUME_DATA.put("resume_json", JSON.stringify(newData));
+    await env.ORCHESTRATOR_BUCKET.put("db/resumeData.json", JSON.stringify(newData, null, 4), {
+      httpMetadata: { contentType: "application/json" }
+    });
     
     return new Response(JSON.stringify({ status: "success" }), {
       headers: { "Content-Type": "application/json" }

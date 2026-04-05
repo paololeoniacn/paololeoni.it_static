@@ -49,15 +49,13 @@ Il progetto segue il **Protocollo Cerniera** e si divide in moduli logici (Share
 - Propone modifiche -> Valida -> Registra (Salva).
 
 ## 5. Roadmap di Sviluppo
-1.  **Phase I: Backend Focus**
-    *   Setup cartella `admin/`.
-    *   Upgrade dell'editor per coprire TUTTE le sezioni del `resumeData.json`.
-2.  **Phase II: Data Migration**
-    *   Sviluppo dello script di mapping per convertire i dati legacy al nuovo formato.
-3.  **Phase III: Frontend Reveal**
-    *   Ricostruzione in HTML statico della landing page pubblica con l'estetica di `paololeoni.it-old`.
-4.  **Phase IV: Deploy & ZeroTrust**
-    *   Configurazione Cloudflare Pages e isolamento dell'area Admin.
+1.  **Phase I: Backend Focus** (DONE)
+2.  **Phase II: Data Migration** (DONE)
+3.  **Phase III: Frontend Reveal** (DONE)
+4.  **Phase IV: Unified R2 Persistence & ZeroTrust** (ACTIVE 🚀)
+    *   Sorgente di verità spostata sul Bucket R2: `paololeoni-orchestrator`.
+    *   Area `/admin` protetta da Cloudflare Zero Trust (Email OTP/GitHub SSO).
+    *   Separazione totale tra codice statico e database dinamico.
 
 ---
-**Stato:** Documento guida approvato e in vigore per ogni fase di sviluppo.
+**Stato:** Progetto in configurazione nativa Cloud (R2 + Workers + Zero Trust).
