@@ -493,15 +493,52 @@
             }
         }
 
-        @media (max-width: 900px) {
+        /* --- MOBILE MENU --- */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+        }
 
+        @media (max-width: 900px) {
             .about-flex,
             .resume-grid {
                 grid-template-columns: 1fr;
             }
 
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                padding: 40px 0;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1);
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                display: flex;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links a {
+                font-size: 1.25rem;
             }
         }
     </style>
@@ -512,7 +549,10 @@
 
     <nav>
         <div class="logo">PAOLO<span>LEONI</span></div>
-        <div class="nav-links">
+        <div class="menu-toggle" id="mobile-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="nav-links" id="nav-links">
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#resume">Experience</a>
@@ -714,6 +754,26 @@
         }
 
         async function init() {
+            // Mobile Menu Toggle
+            const toggle = document.getElementById('mobile-toggle');
+            const links = document.getElementById('nav-links');
+            const toggleIcon = toggle.querySelector('i');
+
+            toggle.addEventListener('click', () => {
+                links.classList.toggle('active');
+                toggleIcon.classList.toggle('fa-bars');
+                toggleIcon.classList.toggle('fa-xmark');
+            });
+
+            // Close menu on link click
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.addEventListener('click', () => {
+                    links.classList.remove('active');
+                    toggleIcon.classList.add('fa-bars');
+                    toggleIcon.classList.remove('fa-xmark');
+                });
+            });
+
             try {
                 let res = await fetch('/api/save?t=' + new Date().getTime());
                 if (!res.ok) {
